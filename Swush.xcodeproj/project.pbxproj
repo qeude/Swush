@@ -7,27 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0145B11B27A592B800E0EC43 /* APNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11A27A592B800E0EC43 /* APNS.swift */; };
+		0145B11E27A592E700E0EC43 /* URLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */; };
+		0145B12027A5930800E0EC43 /* APNS+PayloadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11F27A5930800E0EC43 /* APNS+PayloadType.swift */; };
+		0145B12327A593A000E0EC43 /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12227A593A000E0EC43 /* DependencyProvider.swift */; };
+		0145B12527A5950400E0EC43 /* SecIdentityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12427A5950400E0EC43 /* SecIdentityType.swift */; };
+		0145B12727A5973000E0EC43 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12627A5973000E0EC43 /* String+Extensions.swift */; };
+		0145B12927A5975200E0EC43 /* SenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12827A5975200E0EC43 /* SenderView.swift */; };
+		0145B12C27A5984D00E0EC43 /* APNS+CertificateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12B27A5984D00E0EC43 /* APNS+CertificateType.swift */; };
+		0145B12E27A59A3D00E0EC43 /* APNS+Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12D27A59A3D00E0EC43 /* APNS+Priority.swift */; };
+		0145B13027A5A95200E0EC43 /* SecIdentity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12F27A5A95200E0EC43 /* SecIdentity+Extensions.swift */; };
 		014D0C7327A1AECC00C43A74 /* SwushApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C7227A1AECC00C43A74 /* SwushApp.swift */; };
 		014D0C7527A1AECC00C43A74 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C7427A1AECC00C43A74 /* ContentView.swift */; };
 		014D0C7727A1AECD00C43A74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014D0C7627A1AECD00C43A74 /* Assets.xcassets */; };
 		014D0C7A27A1AECD00C43A74 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014D0C7927A1AECD00C43A74 /* Preview Assets.xcassets */; };
-		014D0C8227A1B2AE00C43A74 /* PayloadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8127A1B2AE00C43A74 /* PayloadType.swift */; };
-		014D0C8427A1BCEC00C43A74 /* SecIdentityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8327A1BCEC00C43A74 /* SecIdentityHelper.swift */; };
-		014D0C8627A1D1E300C43A74 /* SwushViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8527A1D1E300C43A74 /* SwushViewModel.swift */; };
+		014D0C8427A1BCEC00C43A74 /* SecIdentityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8327A1BCEC00C43A74 /* SecIdentityService.swift */; };
+		014D0C8627A1D1E300C43A74 /* SenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8527A1D1E300C43A74 /* SenderViewModel.swift */; };
 		014D0C8827A1D3C800C43A74 /* View+FormLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */; };
 		014D0C9027A1E61600C43A74 /* APNSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8F27A1E61600C43A74 /* APNSService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0145B11A27A592B800E0EC43 /* APNS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNS.swift; sourceTree = "<group>"; };
+		0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Extensions.swift"; sourceTree = "<group>"; };
+		0145B11F27A5930800E0EC43 /* APNS+PayloadType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+PayloadType.swift"; sourceTree = "<group>"; };
+		0145B12227A593A000E0EC43 /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
+		0145B12427A5950400E0EC43 /* SecIdentityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecIdentityType.swift; sourceTree = "<group>"; };
+		0145B12627A5973000E0EC43 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		0145B12827A5975200E0EC43 /* SenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderView.swift; sourceTree = "<group>"; };
+		0145B12B27A5984D00E0EC43 /* APNS+CertificateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+CertificateType.swift"; sourceTree = "<group>"; };
+		0145B12D27A59A3D00E0EC43 /* APNS+Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+Priority.swift"; sourceTree = "<group>"; };
+		0145B12F27A5A95200E0EC43 /* SecIdentity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SecIdentity+Extensions.swift"; sourceTree = "<group>"; };
 		014D0C6F27A1AECC00C43A74 /* Swush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		014D0C7227A1AECC00C43A74 /* SwushApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwushApp.swift; sourceTree = "<group>"; };
 		014D0C7427A1AECC00C43A74 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		014D0C7627A1AECD00C43A74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		014D0C7927A1AECD00C43A74 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		014D0C7B27A1AECD00C43A74 /* Swush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Swush.entitlements; sourceTree = "<group>"; };
-		014D0C8127A1B2AE00C43A74 /* PayloadType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadType.swift; sourceTree = "<group>"; };
-		014D0C8327A1BCEC00C43A74 /* SecIdentityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecIdentityHelper.swift; sourceTree = "<group>"; };
-		014D0C8527A1D1E300C43A74 /* SwushViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwushViewModel.swift; sourceTree = "<group>"; };
+		014D0C8327A1BCEC00C43A74 /* SecIdentityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecIdentityService.swift; sourceTree = "<group>"; };
+		014D0C8527A1D1E300C43A74 /* SenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderViewModel.swift; sourceTree = "<group>"; };
 		014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+FormLabel.swift"; sourceTree = "<group>"; };
 		014D0C8F27A1E61600C43A74 /* APNSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -43,6 +61,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0145B11927A592A900E0EC43 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0145B11A27A592B800E0EC43 /* APNS.swift */,
+				0145B12B27A5984D00E0EC43 /* APNS+CertificateType.swift */,
+				0145B11F27A5930800E0EC43 /* APNS+PayloadType.swift */,
+				0145B12D27A59A3D00E0EC43 /* APNS+Priority.swift */,
+				0145B12427A5950400E0EC43 /* SecIdentityType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0145B12A27A597B200E0EC43 /* Sender */ = {
+			isa = PBXGroup;
+			children = (
+				014D0C8527A1D1E300C43A74 /* SenderViewModel.swift */,
+				0145B12827A5975200E0EC43 /* SenderView.swift */,
+			);
+			path = Sender;
+			sourceTree = "<group>";
+		};
 		014D0C6627A1AECC00C43A74 = {
 			isa = PBXGroup;
 			children = (
@@ -63,8 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				014D0C8927A1D82B00C43A74 /* Sources */,
-				014D0C8127A1B2AE00C43A74 /* PayloadType.swift */,
-				014D0C8327A1BCEC00C43A74 /* SecIdentityHelper.swift */,
 				014D0C7627A1AECD00C43A74 /* Assets.xcassets */,
 				014D0C7B27A1AECD00C43A74 /* Swush.entitlements */,
 				014D0C7827A1AECD00C43A74 /* Preview Content */,
@@ -83,6 +120,7 @@
 		014D0C8927A1D82B00C43A74 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				0145B11927A592A900E0EC43 /* Models */,
 				014D0C8E27A1E5CF00C43A74 /* Services */,
 				014D0C8C27A1D84D00C43A74 /* Extensions */,
 				014D0C8B27A1D83800C43A74 /* App */,
@@ -94,7 +132,7 @@
 		014D0C8A27A1D83300C43A74 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				014D0C8527A1D1E300C43A74 /* SwushViewModel.swift */,
+				0145B12A27A597B200E0EC43 /* Sender */,
 				014D0C7427A1AECC00C43A74 /* ContentView.swift */,
 			);
 			path = Modules;
@@ -112,6 +150,9 @@
 			isa = PBXGroup;
 			children = (
 				014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */,
+				0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */,
+				0145B12627A5973000E0EC43 /* String+Extensions.swift */,
+				0145B12F27A5A95200E0EC43 /* SecIdentity+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -119,7 +160,9 @@
 		014D0C8E27A1E5CF00C43A74 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				014D0C8327A1BCEC00C43A74 /* SecIdentityService.swift */,
 				014D0C8F27A1E61600C43A74 /* APNSService.swift */,
+				0145B12227A593A000E0EC43 /* DependencyProvider.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -194,13 +237,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				014D0C8227A1B2AE00C43A74 /* PayloadType.swift in Sources */,
+				0145B12927A5975200E0EC43 /* SenderView.swift in Sources */,
+				0145B11E27A592E700E0EC43 /* URLResponse+Extensions.swift in Sources */,
 				014D0C8827A1D3C800C43A74 /* View+FormLabel.swift in Sources */,
-				014D0C8427A1BCEC00C43A74 /* SecIdentityHelper.swift in Sources */,
+				0145B12327A593A000E0EC43 /* DependencyProvider.swift in Sources */,
+				014D0C8427A1BCEC00C43A74 /* SecIdentityService.swift in Sources */,
+				0145B12727A5973000E0EC43 /* String+Extensions.swift in Sources */,
+				0145B12527A5950400E0EC43 /* SecIdentityType.swift in Sources */,
+				0145B13027A5A95200E0EC43 /* SecIdentity+Extensions.swift in Sources */,
+				0145B12E27A59A3D00E0EC43 /* APNS+Priority.swift in Sources */,
 				014D0C9027A1E61600C43A74 /* APNSService.swift in Sources */,
-				014D0C8627A1D1E300C43A74 /* SwushViewModel.swift in Sources */,
+				014D0C8627A1D1E300C43A74 /* SenderViewModel.swift in Sources */,
 				014D0C7527A1AECC00C43A74 /* ContentView.swift in Sources */,
 				014D0C7327A1AECC00C43A74 /* SwushApp.swift in Sources */,
+				0145B12C27A5984D00E0EC43 /* APNS+CertificateType.swift in Sources */,
+				0145B12027A5930800E0EC43 /* APNS+PayloadType.swift in Sources */,
+				0145B11B27A592B800E0EC43 /* APNS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
