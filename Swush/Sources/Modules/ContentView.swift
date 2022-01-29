@@ -8,16 +8,37 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.appDatabase) private var appDatabase
+
     var body: some View {
         NavigationView {
             ApnsListView()
-            SenderView(viewModel: SenderViewModel())
-        }.toolbar {
+            Text("Create your first APNS to start using the app. 🚀")
+        }
+        .toolbar {
             ToolbarItem(placement: .navigation) {
                 Button(action: toggleSidebar, label: {
                     Image(systemName: "sidebar.leading")
                 })
             }
+            ToolbarItem(placement: .navigation) {
+                Button {
+                    Task {
+                        await create()
+                    }
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+        }
+    }
+    
+    private func create() async {
+        do {
+            var apns = APNS.new
+            try await appDatabase.saveAPNS(&apns)
+        } catch {
+            print(error)
         }
     }
     

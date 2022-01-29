@@ -13,32 +13,40 @@ struct ApnsListView: View {
 
     @Query(APNSRequest(ordering: .byName), in: \.appDatabase) var apnsList: [APNS]
     @State private var showDeleteAlert: Bool = false
-
+    @State private var searchText: String = ""
+    
+    var filteredApnsList: [APNS] {
+        if searchText.isEmpty {
+            return apnsList
+        } else {
+            return apnsList.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
 
     var body: some View {
-        List {
-            ForEach(apnsList) { apns in
-                NavigationLink(apns.name ?? "No name") {
-                    SenderView(viewModel: SenderViewModel(apns: apns))
-                }
-                .frame(height: 35)
-                .alert("Do you really want to delete the APNS named \"\(apns.name ?? "")\"? ", isPresented: $showDeleteAlert) {
-                    Button("Yes") {
-                        Task {
-                            await delete(apns: apns)
-                        }
+        List(filteredApnsList) { apns in
+            NavigationLink(apns.name ) {
+                SenderView(viewModel: SenderViewModel(apns: apns))
+            }
+            .frame(height: 30)
+            .alert("Do you really want to delete the APNS named \"\(apns.name)\"? ", isPresented: $showDeleteAlert) {
+                Button("Yes") {
+                    Task {
+                        await delete(apns: apns)
                     }
-                    Button("No") {}
                 }
-                .contextMenu {
-                    Button {
-                        showDeleteAlert(for: apns)
-                    } label: {
-                        Text("Delete")
-                    }
+                Button("No") {}
+            }
+            .contextMenu {
+                Button {
+                    showDeleteAlert(for: apns)
+                } label: {
+                    Text("Delete")
                 }
             }
         }
+        .searchable(text: $searchText, placement: .sidebar)
+        .listStyle(SidebarListStyle())
     }
     
     private func showDeleteAlert(for apns: APNS) {

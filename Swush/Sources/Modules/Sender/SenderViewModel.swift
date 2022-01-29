@@ -22,10 +22,9 @@ class SenderViewModel: ObservableObject {
     @Published var priority: APNS.Priority = .high
     @Published var selectedTopic: String = ""
     @Published var showCertificateTypePicker: Bool = false
-    @Published var showCompleteForm: Bool = false
     @Published var selectedPayloadType: APNS.PayloadType = .alert
     
-    init() {}
+    let id: Int64
     
     init(apns: APNS) {
         selectedIdentity = apns.identity
@@ -36,15 +35,12 @@ class SenderViewModel: ObservableObject {
         priority = apns.priority
         selectedTopic = apns.topic
         selectedPayloadType = apns.payloadType
-        name = apns.name ?? ""
+        name = apns.name
+        id = apns.id!
     }
     
     func didChooseIdentity() {
-        guard let selectedIdentity = selectedIdentity else {
-            showCompleteForm = false
-            return
-        }
-        showCompleteForm = true
+        guard let selectedIdentity = selectedIdentity else { return }
         let type = selectedIdentity.type
         switch type {
             case .universal:
@@ -61,7 +57,7 @@ class SenderViewModel: ObservableObject {
     
     func sendPush() async throws {
         guard let _ = payload.toJSON(), let identity = selectedIdentity else { return }
-        let apns = APNS(creationDate: Date(), identityString: identity.humanReadable, rawPayload: payload, token: token, topic: selectedTopic, payloadType: selectedPayloadType, priority: priority, isSandbox: selectedCertificateType == .sandbox)
+        let apns = APNS(name: name, creationDate: Date(), identityString: identity.humanReadable, rawPayload: payload, token: token, topic: selectedTopic, payloadType: selectedPayloadType, priority: priority, isSandbox: selectedCertificateType == .sandbox)
         try await DependencyProvider.apnsService.sendPush(for: apns)
     }
 }

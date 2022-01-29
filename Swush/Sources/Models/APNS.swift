@@ -13,7 +13,7 @@ import Combine
 
 struct APNS: Identifiable {
     var id: Int64?
-    var name: String?
+    var name: String
     let creationDate: Date
     let identityString: String
     let rawPayload: String
@@ -30,6 +30,18 @@ struct APNS: Identifiable {
     var identity: SecIdentity? {
         return DependencyProvider.secIdentityService.identities?.first(where: { $0.humanReadable == identityString })
     }
+    
+    static var new = APNS(
+        name: "Untitled",
+        creationDate: Date(),
+        identityString: "",
+        rawPayload: "{\n\t\"aps\": {\n\t\t\"alert\": \"Push test!\",\n\t\t\"sound\": \"default\",\n\t}\n}",
+        token: "",
+        topic: "",
+        payloadType: .alert,
+        priority: .high,
+        isSandbox: true
+    )
 }
 
 extension APNS: Codable, FetchableRecord, MutablePersistableRecord {

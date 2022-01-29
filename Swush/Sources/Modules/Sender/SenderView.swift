@@ -20,14 +20,14 @@ struct SenderView: View {
                     Text($0.humanReadable).tag($0 as SecIdentity?)
                 }
             }
-            if viewModel.showCompleteForm && viewModel.showCertificateTypePicker {
+            if viewModel.selectedIdentity != nil && viewModel.showCertificateTypePicker {
                 Picker("Certificate type: ", selection: $viewModel.selectedCertificateType) {
                     ForEach(APNS.CertificateType.allCases, id:\.self) {
                         Text(APNS.CertificateType.from(value: $0))
                     }
                 }.pickerStyle(.segmented)
             }
-            if viewModel.showCompleteForm {
+            if viewModel.selectedIdentity != nil {
                 TextField("Token: ", text: $viewModel.token, prompt: Text("Enter your push token here..."))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 Picker("Topic: ", selection: $viewModel.selectedTopic) {
@@ -69,7 +69,7 @@ struct SenderView: View {
             }
         }
         .navigationTitle(viewModel.name)
-        .animation(.interactiveSpring(), value: viewModel.showCompleteForm)
+        .animation(.interactiveSpring(), value: viewModel.selectedIdentity)
         .padding(20)
         .frame(minWidth: 350, minHeight: 350)
     }
@@ -77,15 +77,16 @@ struct SenderView: View {
     private func save() async {
         do {
             var apns = APNS(
-                name: viewModel.name,
-                creationDate: Date(),
-                identityString: viewModel.selectedIdentity!.humanReadable,
-                rawPayload: viewModel.payload,
-                token: viewModel.token,
-                topic: viewModel.selectedTopic,
-                payloadType: viewModel.selectedPayloadType,
-                priority: viewModel.priority,
-                isSandbox: viewModel.selectedCertificateType == .sandbox)
+                            id: viewModel.id,
+                            name: viewModel.name,
+                            creationDate: Date(),
+                            identityString: viewModel.selectedIdentity!.humanReadable,
+                            rawPayload: viewModel.payload,
+                            token: viewModel.token,
+                            topic: viewModel.selectedTopic,
+                            payloadType: viewModel.selectedPayloadType,
+                            priority: viewModel.priority,
+                            isSandbox: viewModel.selectedCertificateType == .sandbox)
             try await appDatabase.saveAPNS(&apns)
         } catch {
             print(error)
@@ -95,6 +96,6 @@ struct SenderView: View {
 
 struct SenderView_Previews: PreviewProvider {
     static var previews: some View {
-        SenderView(viewModel: SenderViewModel())
+        SenderView(viewModel: SenderViewModel(apns: .new))
     }
 }
