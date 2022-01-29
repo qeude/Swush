@@ -30,6 +30,4 @@ extension APNS {
             return mapping[value] ?? "Unknown"
         }
     }
-    
-    
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 extension APNS {
-    enum Priority: Int, CaseIterable {
+    enum Priority: Int, Codable, CaseIterable {
         case low = 5
         case high = 10
     }

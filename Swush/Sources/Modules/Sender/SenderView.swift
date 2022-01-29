@@ -9,7 +9,8 @@ import SwiftUI
 import SecurityInterface
 
 struct SenderView: View {
-    @ObservedObject var viewModel = SenderViewModel()
+    @Environment(\.appDatabase) private var appDatabase
+    @ObservedObject var viewModel: SenderViewModel
     
     var body: some View {
         Form {
@@ -47,24 +48,53 @@ struct SenderView: View {
                 TextEditor(text: $viewModel.payload)
                     .font(.system(.body, design: .monospaced))
                     .formLabel(Text("Payload: "), verticalAlignment: .top)
-                Button {
-                    print("Send push")
-                    Task {
-                        try await viewModel.sendPush()
+                TextField("Name: ", text: $viewModel.name, prompt: Text("Enter the name of your saved APNS here..."))
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                HStack {
+                        Button {
+                            Task {
+                                try await viewModel.sendPush()
+                            }
+                        } label: {
+                            Text("🚀 Send")
+                        }
+                        Button {
+                            Task {
+                                await save()
+                            }
+                        } label: {
+                            Text("💾 Save")
+                        }
                     }
-                } label: {
-                    Text("Send 🚀")
-                }
             }
         }
+        .navigationTitle(viewModel.name)
         .animation(.interactiveSpring(), value: viewModel.showCompleteForm)
         .padding(20)
         .frame(minWidth: 350, minHeight: 350)
+    }
+    
+    private func save() async {
+        do {
+            var apns = APNS(
+                name: viewModel.name,
+                creationDate: Date(),
+                identityString: viewModel.selectedIdentity!.humanReadable,
+                rawPayload: viewModel.payload,
+                token: viewModel.token,
+                topic: viewModel.selectedTopic,
+                payloadType: viewModel.selectedPayloadType,
+                priority: viewModel.priority,
+                isSandbox: viewModel.selectedCertificateType == .sandbox)
+            try await appDatabase.saveAPNS(&apns)
+        } catch {
+            print(error)
+        }
     }
 }
 
 struct SenderView_Previews: PreviewProvider {
     static var previews: some View {
-        SenderView()
+        SenderView(viewModel: SenderViewModel())
     }
 }

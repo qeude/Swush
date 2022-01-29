@@ -24,7 +24,7 @@ class APNSService: NSObject {
         
         request.addValue(apns.topic, forHTTPHeaderField: "apns-topic")
         request.addValue(String(apns.priority.rawValue), forHTTPHeaderField: "apns-priority")
-        request.addValue(apns.payloadType.slug, forHTTPHeaderField: "apns-push-type")
+        request.addValue(apns.payloadType.rawValue, forHTTPHeaderField: "apns-push-type")
         
         let (data, response) = try await session.data(for: request)
         guard let statusCode = response.status else { fatalError() }

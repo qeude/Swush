@@ -14,6 +14,7 @@ class SenderViewModel: ObservableObject {
             didChooseIdentity()
         }
     }
+    @Published var name: String = ""
     @Published var selectedCertificateType: APNS.CertificateType = .sandbox
     @Published var token = ""
     @Published var payload = "{\n\t\"aps\": {\n\t\t\"alert\": \"Push test!\",\n\t\t\"sound\": \"default\",\n\t}\n}"
@@ -24,10 +25,18 @@ class SenderViewModel: ObservableObject {
     @Published var showCompleteForm: Bool = false
     @Published var selectedPayloadType: APNS.PayloadType = .alert
     
-    init() {
-        if let _ = SFChooseIdentityPanel.shared().identity() {
-            showCompleteForm = true
-        }
+    init() {}
+    
+    init(apns: APNS) {
+        selectedIdentity = apns.identity
+        selectedCertificateType = apns.isSandbox ? .sandbox : .production
+        token = apns.token
+        payload = apns.rawPayload
+        topics = apns.identity?.topics ?? []
+        priority = apns.priority
+        selectedTopic = apns.topic
+        selectedPayloadType = apns.payloadType
+        name = apns.name ?? ""
     }
     
     func didChooseIdentity() {
@@ -51,8 +60,8 @@ class SenderViewModel: ObservableObject {
     }
     
     func sendPush() async throws {
-        guard let payload = payload.toJSON(), let identity = selectedIdentity else { return }
-        let apns = APNS(identity: identity, payload: payload, token: token, topic: selectedTopic, payloadType: selectedPayloadType, priority: priority, isSandbox: selectedCertificateType == .sandbox)
+        guard let _ = payload.toJSON(), let identity = selectedIdentity else { return }
+        let apns = APNS(creationDate: Date(), identityString: identity.humanReadable, rawPayload: payload, token: token, topic: selectedTopic, payloadType: selectedPayloadType, priority: priority, isSandbox: selectedCertificateType == .sandbox)
         try await DependencyProvider.apnsService.sendPush(for: apns)
     }
 }

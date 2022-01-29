@@ -8,13 +8,13 @@
 import Foundation
 
 extension APNS {
-    enum PayloadType: CaseIterable {
-        case alert
-        case background
-        case voip
-        case complication
-        case fileprovider
-        case mdm
+    enum PayloadType: String, Codable, CaseIterable {
+        case alert = "alert"
+        case background = "background"
+        case voip = "voip"
+        case complication = "complication"
+        case fileprovider = "fileprovider"
+        case mdm = "mdm"
         
         private static let mapping: [PayloadType: String] = [
             .alert: "Alert",
@@ -24,19 +24,6 @@ extension APNS {
             .fileprovider: "File Provider",
             .mdm: "Mdm",
         ]
-        
-        private static let slugMapping: [PayloadType: String] = [
-            .alert: "alert",
-            .background: "background",
-            .voip: "voip",
-            .complication: "complication",
-            .fileprovider: "fileprovider",
-            .mdm: "mdm",
-        ]
-        
-        var slug: String {
-            return PayloadType.slugMapping[self] ?? ""
-        }
         
         static func from(value: PayloadType) -> String {
             return mapping[value] ?? "Unknown"
