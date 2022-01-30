@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct SwushApp: App {
+    @StateObject var updaterViewModel = UpdaterViewModel()
+
     var body: some Scene {
         WindowGroup {
             ContentView().environment(\.appDatabase, .shared)
+        }
+        .commands {
+            CommandGroup(after: .appInfo) {
+                CheckForUpdatesView(viewModel: updaterViewModel)
+            }
         }
     }
 }
