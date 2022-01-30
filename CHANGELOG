@@ -1,0 +1,3 @@
+# 🐛 Bug fixes
+
+- Fixed UI bug on certificate type picker which didn't appear on init.

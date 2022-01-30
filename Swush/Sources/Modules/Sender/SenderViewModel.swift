@@ -37,6 +37,7 @@ class SenderViewModel: ObservableObject {
         selectedPayloadType = apns.payloadType
         name = apns.name
         id = apns.id!
+        didChooseIdentity()
     }
     
     func didChooseIdentity() {

@@ -49,10 +49,18 @@ platform :mac do
 
 
   desc "Bump version and build number of the app"
-  lane :bump_version do
+  lane :bump_version do |options| 
+    mode = "minor"
+    if options[:mode]
+      if ["patch", "minor", "major"].include? options[:mode]
+        mode = options[:mode]
+      else
+        UI.user_error!("You should set a mode in the following: \"patch\", \"minor\", \"major\"")
+      end
+    end
     sh("git checkout develop")
     version = increment_version_number(
-      bump_type: "minor"
+      bump_type: mode
     )
     build = increment_build_number
     sh("git commit -am 'bump to version v#{version}'")
