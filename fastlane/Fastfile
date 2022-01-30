@@ -63,7 +63,7 @@ platform :mac do
       bump_type: mode
     )
     build = increment_build_number
-    sh("git commit -am 'bump to version v#{version}'")
+    sh("git commit -am '🔖 bump to version v#{version}'")
     sh("git push")
     sh("git checkout main && git merge develop && git push")
     add_git_tag(tag: "v#{version}")

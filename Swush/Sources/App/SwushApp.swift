@@ -13,7 +13,13 @@ struct SwushApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView().environment(\.appDatabase, .shared)
+            ContentView()
+                .environment(\.appDatabase, .shared)
+                .onAppear {
+                    if updaterViewModel.canCheckForUpdates {
+                        updaterViewModel.checkForUpdates()
+                    }
+                }
         }
         .commands {
             CommandGroup(after: .appInfo) {
