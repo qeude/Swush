@@ -1,0 +1,63 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:mac)
+
+platform :mac do
+
+  desc "Release the app through Sparkle"
+  lane :generate_release do
+    sh("rm -rf ../Build")
+    clear_derived_data
+    version = get_version_number
+    build = get_build_number
+    build_app(
+      scheme: "Swush",
+      clean: true,
+      skip_codesigning: true,
+      silent: true,
+      export_method: "mac-application",
+      output_directory: "Build/"
+    )
+    zip(
+      path: "Build/Swush.app",
+      output_path: "Releases/Swush-#{version}.zip"
+    )
+    sh("./generate_appcast ../Releases/")
+    github_release = set_github_release(
+      repository_name: ENV["GITHUB_REPO"],
+      api_token: ENV["GITHUB_API_TOKEN"],
+      name: "v#{version} 🚀",
+      tag_name: "v#{version}",
+      description: (File.read("CHANGELOG") rescue "No changelog provided"),
+      commitish: "main",
+      upload_assets: ["Releases/Swush-#{version}.zip"]
+    )
+  end
+
+
+  desc "Bump version and build number of the app"
+  lane :bump_version do
+    sh("git checkout develop")
+    version = increment_version_number(
+      bump_type: "minor"
+    )
+    build = increment_build_number
+    sh("git commit -am 'bump to version v#{version}'")
+    sh("git checkout main && git merge develop && git push")
+    add_git_tag(tag: "v#{version}")
+    push_git_tags
+  end
+end
