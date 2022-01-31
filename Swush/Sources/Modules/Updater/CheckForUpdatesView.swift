@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct CheckForUpdatesView: View {
-    @ObservedObject var viewModel: UpdaterViewModel
+    @EnvironmentObject var updaterViewModel: UpdaterViewModel
     
     var body: some View {
-        Button("Check for Updates…", action: viewModel.checkForUpdates)
-            .disabled(!viewModel.canCheckForUpdates)
+        Button("Check for Updates…", action: updaterViewModel.checkForUpdates)
+            .disabled(!updaterViewModel.canCheckForUpdates)
     }
 }
 
 struct CheckForUpdatesView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckForUpdatesView(viewModel: UpdaterViewModel())
+        CheckForUpdatesView()
     }
 }
