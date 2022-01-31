@@ -33,6 +33,7 @@
 		014D0C8827A1D3C800C43A74 /* View+FormLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */; };
 		014D0C9027A1E61600C43A74 /* APNSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8F27A1E61600C43A74 /* APNSService.swift */; };
 		0194C7D827A5B55300FB943F /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194C7D727A5B55300FB943F /* AppDatabase.swift */; };
+		01C8269B27A87C450043E890 /* NSTextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,8 @@
 		014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+FormLabel.swift"; sourceTree = "<group>"; };
 		014D0C8F27A1E61600C43A74 /* APNSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSService.swift; sourceTree = "<group>"; };
 		0194C7D727A5B55300FB943F /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
+		01C8269727A8798D0043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
+		01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
 		01FFBC7E27A6A6C400D8780C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +124,7 @@
 			children = (
 				014D0C7127A1AECC00C43A74 /* Swush */,
 				014D0C7027A1AECC00C43A74 /* Products */,
+				01C8269927A87A020043E890 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -187,6 +191,7 @@
 		014D0C8C27A1D84D00C43A74 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */,
 				014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */,
 				0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */,
 				0145B12627A5973000E0EC43 /* String+Extensions.swift */,
@@ -212,6 +217,14 @@
 				010E486827A5BA8500D950EF /* Persistence.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		01C8269927A87A020043E890 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				01C8269727A8798D0043E890 /* NSTextView+Extensions.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +327,7 @@
 				0145B12C27A5984D00E0EC43 /* APNS+CertificateType.swift in Sources */,
 				0145B12027A5930800E0EC43 /* APNS+PayloadType.swift in Sources */,
 				0145B11B27A592B800E0EC43 /* APNS.swift in Sources */,
+				01C8269B27A87C450043E890 /* NSTextView+Extensions.swift in Sources */,
 				010E487927A69F4900D950EF /* CheckForUpdatesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
