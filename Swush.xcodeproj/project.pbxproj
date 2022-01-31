@@ -34,6 +34,7 @@
 		014D0C9027A1E61600C43A74 /* APNSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8F27A1E61600C43A74 /* APNSService.swift */; };
 		0194C7D827A5B55300FB943F /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194C7D727A5B55300FB943F /* AppDatabase.swift */; };
 		01C8269B27A87C450043E890 /* NSTextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */; };
+		01C8269E27A87FD70043E890 /* CreateApnsCommandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C8269D27A87FD70043E890 /* CreateApnsCommandView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		0194C7D727A5B55300FB943F /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
 		01C8269727A8798D0043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
 		01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
+		01C8269D27A87FD70043E890 /* CreateApnsCommandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateApnsCommandView.swift; sourceTree = "<group>"; };
 		01FFBC7E27A6A6C400D8780C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +174,7 @@
 		014D0C8A27A1D83300C43A74 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				01C8269C27A87F8A0043E890 /* CreateApnsCommand */,
 				010E487527A69F0F00D950EF /* Updater */,
 				010E486D27A5BF6200D950EF /* ApnsList */,
 				0145B12A27A597B200E0EC43 /* Sender */,
@@ -225,6 +228,14 @@
 				01C8269727A8798D0043E890 /* NSTextView+Extensions.swift */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		01C8269C27A87F8A0043E890 /* CreateApnsCommand */ = {
+			isa = PBXGroup;
+			children = (
+				01C8269D27A87FD70043E890 /* CreateApnsCommandView.swift */,
+			);
+			path = CreateApnsCommand;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0145B12927A5975200E0EC43 /* SenderView.swift in Sources */,
+				01C8269E27A87FD70043E890 /* CreateApnsCommandView.swift in Sources */,
 				010E486F27A5BF7C00D950EF /* ApnsListView.swift in Sources */,
 				010E487727A69F1A00D950EF /* UpdaterViewModel.swift in Sources */,
 				0145B11E27A592E700E0EC43 /* URLResponse+Extensions.swift in Sources */,

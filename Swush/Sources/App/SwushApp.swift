@@ -25,6 +25,10 @@ struct SwushApp: App {
             CommandGroup(after: .appInfo) {
                 CheckForUpdatesView(viewModel: updaterViewModel)
             }
+            CommandGroup(replacing: .newItem) {
+                CreateApnsCommandView()
+                    .environment(\.appDatabase, .shared)
+            }
         }
     }
 }
