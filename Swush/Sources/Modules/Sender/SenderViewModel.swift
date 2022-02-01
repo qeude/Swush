@@ -25,6 +25,8 @@ class SenderViewModel: ObservableObject {
     @Published var selectedPayloadType: APNS.PayloadType = .alert
     
     let id: Int64
+    let creationDate: Date
+    let updateDate: Date
     
     init(apns: APNS) {
         selectedIdentity = apns.identity
@@ -37,6 +39,8 @@ class SenderViewModel: ObservableObject {
         selectedPayloadType = apns.payloadType
         name = apns.name
         id = apns.id!
+        creationDate = apns.creationDate
+        updateDate = apns.updateDate
         didChooseIdentity()
     }
     
@@ -58,7 +62,27 @@ class SenderViewModel: ObservableObject {
     
     func sendPush() async throws {
         guard let _ = payload.toJSON(), let identity = selectedIdentity else { return }
-        let apns = APNS(name: name, creationDate: Date(), identityString: identity.humanReadable, rawPayload: payload, token: token, topic: selectedTopic, payloadType: selectedPayloadType, priority: priority, isSandbox: selectedCertificateType == .sandbox)
+        let apns = APNS(name: name, creationDate: creationDate, updateDate: updateDate, identityString: identity.humanReadable, rawPayload: payload, token: token, topic: selectedTopic, payloadType: selectedPayloadType, priority: priority, isSandbox: selectedCertificateType == .sandbox)
         try await DependencyProvider.apnsService.sendPush(for: apns)
+    }
+    
+    func save() async {
+        do {
+            var apns = APNS(
+                            id: id,
+                            name: name,
+                            creationDate: creationDate,
+                            updateDate: updateDate,
+                            identityString: selectedIdentity!.humanReadable,
+                            rawPayload: payload,
+                            token: token,
+                            topic: selectedTopic,
+                            payloadType: selectedPayloadType,
+                            priority: priority,
+                            isSandbox: selectedCertificateType == .sandbox)
+            try await AppDatabase.shared.saveAPNS(&apns)
+        } catch {
+            print(error)
+        }
     }
 }

@@ -13,6 +13,7 @@
 		010E487427A69EC400D950EF /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 010E487327A69EC400D950EF /* Sparkle */; };
 		010E487727A69F1A00D950EF /* UpdaterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E487627A69F1A00D950EF /* UpdaterViewModel.swift */; };
 		010E487927A69F4900D950EF /* CheckForUpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E487827A69F4900D950EF /* CheckForUpdatesView.swift */; };
+		012D75CD27A984CC00A55457 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D75CC27A984CC00A55457 /* AppState.swift */; };
 		0145B11B27A592B800E0EC43 /* APNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11A27A592B800E0EC43 /* APNS.swift */; };
 		0145B11E27A592E700E0EC43 /* URLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */; };
 		0145B12027A5930800E0EC43 /* APNS+PayloadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11F27A5930800E0EC43 /* APNS+PayloadType.swift */; };
@@ -42,6 +43,7 @@
 		010E486E27A5BF7C00D950EF /* ApnsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApnsListView.swift; sourceTree = "<group>"; };
 		010E487627A69F1A00D950EF /* UpdaterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterViewModel.swift; sourceTree = "<group>"; };
 		010E487827A69F4900D950EF /* CheckForUpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesView.swift; sourceTree = "<group>"; };
+		012D75CC27A984CC00A55457 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		0145B11A27A592B800E0EC43 /* APNS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNS.swift; sourceTree = "<group>"; };
 		0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		0145B11F27A5930800E0EC43 /* APNS+PayloadType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+PayloadType.swift"; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				014D0C7227A1AECC00C43A74 /* SwushApp.swift */,
+				012D75CC27A984CC00A55457 /* AppState.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				0145B12927A5975200E0EC43 /* SenderView.swift in Sources */,
 				01C8269E27A87FD70043E890 /* CreateApnsCommandView.swift in Sources */,
 				010E486F27A5BF7C00D950EF /* ApnsListView.swift in Sources */,
+				012D75CD27A984CC00A55457 /* AppState.swift in Sources */,
 				010E487727A69F1A00D950EF /* UpdaterViewModel.swift in Sources */,
 				0145B11E27A592E700E0EC43 /* URLResponse+Extensions.swift in Sources */,
 				014D0C8827A1D3C800C43A74 /* View+FormLabel.swift in Sources */,

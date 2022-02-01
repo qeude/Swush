@@ -10,10 +10,13 @@ import SwiftUI
 @main
 struct SwushApp: App {
     @StateObject var updaterViewModel = UpdaterViewModel()
+    @StateObject var appState = AppState()
+
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(appState)
                 .environment(\.appDatabase, .shared)
                 .onAppear {
                     if updaterViewModel.canCheckForUpdates {
@@ -27,7 +30,7 @@ struct SwushApp: App {
             }
             CommandGroup(replacing: .newItem) {
                 CreateApnsCommandView()
-                    .environment(\.appDatabase, .shared)
+                    .environmentObject(appState)
             }
         }
     }

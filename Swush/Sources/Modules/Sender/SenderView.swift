@@ -48,8 +48,6 @@ struct SenderView: View {
                 TextEditor(text: $viewModel.payload)
                     .font(.system(.body, design: .monospaced))
                     .formLabel(Text("Payload: "), verticalAlignment: .top)
-                TextField("Name: ", text: $viewModel.name, prompt: Text("Enter the name of your saved APNS here..."))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
                 HStack {
                         Button {
                             Task {
@@ -60,7 +58,7 @@ struct SenderView: View {
                         }
                         Button {
                             Task {
-                                await save()
+                                await viewModel.save()
                             }
                         } label: {
                             Text("💾 Save")
@@ -72,25 +70,6 @@ struct SenderView: View {
         .animation(.interactiveSpring(), value: viewModel.selectedIdentity)
         .padding(20)
         .frame(minWidth: 350, minHeight: 350)
-    }
-    
-    private func save() async {
-        do {
-            var apns = APNS(
-                            id: viewModel.id,
-                            name: viewModel.name,
-                            creationDate: Date(),
-                            identityString: viewModel.selectedIdentity!.humanReadable,
-                            rawPayload: viewModel.payload,
-                            token: viewModel.token,
-                            topic: viewModel.selectedTopic,
-                            payloadType: viewModel.selectedPayloadType,
-                            priority: viewModel.priority,
-                            isSandbox: viewModel.selectedCertificateType == .sandbox)
-            try await appDatabase.saveAPNS(&apns)
-        } catch {
-            print(error)
-        }
     }
 }
 

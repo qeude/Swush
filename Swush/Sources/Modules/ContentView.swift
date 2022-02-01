@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.appDatabase) private var appDatabase
+    @EnvironmentObject var appState: AppState
 
     var body: some View {
         NavigationView {
@@ -24,21 +25,12 @@ struct ContentView: View {
             ToolbarItem(placement: .navigation) {
                 Button {
                     Task {
-                        await create()
+                        await appState.create()
                     }
                 } label: {
                     Image(systemName: "plus")
                 }
             }
-        }
-    }
-    
-    private func create() async {
-        do {
-            var apns = APNS.new
-            try await appDatabase.saveAPNS(&apns)
-        } catch {
-            print(error)
         }
     }
     

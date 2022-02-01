@@ -15,6 +15,7 @@ struct APNS: Identifiable {
     var id: Int64?
     var name: String
     let creationDate: Date
+    let updateDate: Date
     let identityString: String
     let rawPayload: String
     let token: String
@@ -34,6 +35,7 @@ struct APNS: Identifiable {
     static var new = APNS(
         name: "Untitled",
         creationDate: Date(),
+        updateDate: Date(),
         identityString: "",
         rawPayload: "{\n\t\"aps\": {\n\t\t\"alert\": \"Push test!\",\n\t\t\"sound\": \"default\",\n\t}\n}",
         token: "",
@@ -49,6 +51,7 @@ extension APNS: Codable, FetchableRecord, MutablePersistableRecord {
     fileprivate enum Columns {
         static let name = Column(CodingKeys.name)
         static let creationDate = Column(CodingKeys.creationDate)
+        static let updateDate = Column(CodingKeys.updateDate)
         static let identityString = Column(CodingKeys.identityString)
         static let rawPayload = Column(CodingKeys.rawPayload)
         static let token = Column(CodingKeys.token)
@@ -107,12 +110,21 @@ extension DerivableRequest where RowDecoder == APNS {
     ///     let bestPlayer: Player? = try dbWriter.read { db in
     ///         try Player.all().orderedByScore().fetchOne(db)
     ///     }
-    func orderedByDate() -> Self {
+    func orderedByCreationDate() -> Self {
         // Sort by descending score, and then by name, in a
         // localized case insensitive fashion
         // See https://github.com/groue/GRDB.swift/blob/master/README.md#string-comparison
         order(
             APNS.Columns.creationDate.desc,
+            APNS.Columns.name.collating(.localizedCaseInsensitiveCompare))
+    }
+    
+    func orderedByUpdateDate() -> Self {
+        // Sort by descending score, and then by name, in a
+        // localized case insensitive fashion
+        // See https://github.com/groue/GRDB.swift/blob/master/README.md#string-comparison
+        order(
+            APNS.Columns.updateDate.desc,
             APNS.Columns.name.collating(.localizedCaseInsensitiveCompare))
     }
 }
@@ -121,7 +133,8 @@ extension DerivableRequest where RowDecoder == APNS {
 struct APNSRequest: Queryable {
     enum Ordering {
         case byName
-        case byDate
+        case byCreationDate
+        case byUpdateDate
     }
     
     var ordering: Ordering
@@ -149,8 +162,10 @@ struct APNSRequest: Queryable {
            switch ordering {
                case .byName:
                    return try APNS.all().orderedByName().fetchAll(db)
-               case .byDate:
-                   return try APNS.all().orderedByDate().fetchAll(db)
+               case .byCreationDate:
+                   return try APNS.all().orderedByCreationDate().fetchAll(db)
+               case .byUpdateDate:
+                   return try APNS.all().orderedByUpdateDate().fetchAll(db)
            }
        }
 }

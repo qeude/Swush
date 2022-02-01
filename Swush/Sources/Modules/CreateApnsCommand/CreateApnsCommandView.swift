@@ -9,11 +9,12 @@ import SwiftUI
 
 struct CreateApnsCommandView: View {
     @Environment(\.appDatabase) private var appDatabase
+    @EnvironmentObject var appState: AppState
 
     var body: some View {
         Button {
             Task {
-                await create()
+                await appState.create()
             }
         } label: {
             Text("New APNS")

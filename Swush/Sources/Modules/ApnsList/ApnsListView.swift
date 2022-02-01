@@ -10,13 +10,13 @@ import GRDBQuery
 
 struct ApnsListView: View {
     @Environment(\.appDatabase) private var appDatabase
-
-    @Query(APNSRequest(ordering: .byName), in: \.appDatabase) var apnsList: [APNS]
-    @State private var showDeleteAlert: Bool = false
-    @State private var apnsToDelete: APNS? = nil
-    @State private var searchText: String = ""
+    @EnvironmentObject private var appState: AppState
     
-    var filteredApnsList: [APNS] {
+    @Query(APNSRequest(ordering: .byName), in: \.appDatabase) private var apnsList: [APNS]
+    @State private var searchText: String = ""
+    @FocusState private var renameTextFieldIsFocused: Bool
+
+    private var filteredApnsList: [APNS] {
         if searchText.isEmpty {
             return apnsList
         } else {
@@ -27,44 +27,60 @@ struct ApnsListView: View {
     var body: some View {
         List {
             ForEach(filteredApnsList) { apns in
-                NavigationLink(apns.name) {
-                    SenderView(viewModel: SenderViewModel(apns: apns))
-                }
-                .frame(height: 30)
-                .contextMenu {
-                    Button {
-                        showDeleteAlert(for: apns)
-                    } label: {
-                        Text("Delete")
-                    }
-                }
-                .alert("Do you really want to delete the APNS named \"\(apnsToDelete?.name ?? "")\"? ", isPresented: $showDeleteAlert) {
-                    Button("Yes") {
-                        Task {
-                            guard let apnsToDelete = apnsToDelete else { return }
-                            await delete(apns: apnsToDelete)
-                            self.apnsToDelete = nil
-                        }
-                    }
-                    Button("No") {}
+                if appState.apnsToRename?.id == apns.id {
+                    editView(with: apns)
+                } else {
+                    readView(with: apns)
                 }
             }
+        }
+        .onChange(of: appState.renameTextFieldIsFocused) {
+            renameTextFieldIsFocused = $0
+        }
+        .onChange(of: renameTextFieldIsFocused) {
+            appState.renameTextFieldIsFocused = $0
         }
         .searchable(text: $searchText, placement: .sidebar)
         .listStyle(SidebarListStyle())
     }
     
-    private func showDeleteAlert(for apns: APNS) {
-        apnsToDelete = apns
-        showDeleteAlert = true
+    private func editView(with apns: APNS) -> some View {
+        TextField(apns.name, text: $appState.newName, onEditingChanged: { editingChanged in
+            if !editingChanged {
+                Task {
+                    await appState.performRenaming()
+                }
+            }
+        })
+            .focused($renameTextFieldIsFocused)
+            .frame(height: 30)
     }
     
-    private func delete(apns: APNS) async {
-        guard let id = apns.id else { return }
-        do {
-            try await appDatabase.deleteAPNS(ids: [id])
-        } catch {
-            print(error)
+    private func readView(with apns: APNS) -> some View {
+        NavigationLink(apns.name) {
+            SenderView(viewModel: SenderViewModel(apns: apns))
+        }
+        .frame(height: 30)
+        .contextMenu {
+            Button {
+                appState.startRenaming(apns)
+            } label: {
+                Text("Rename")
+            }
+            Button {
+                appState.showDeleteAlert(for: apns)
+            } label: {
+                Text("Delete")
+            }
+        }
+        .alert("Do you really want to delete the APNS named \"\(appState.apnsToDelete?.name ?? "")\"? ", isPresented: $appState.showDeleteAlert) {
+            Button("Yes") {
+                Task {
+                    guard let apnsToDelete = appState.apnsToDelete else { return }
+                    await appState.delete(apns: apnsToDelete)
+                }
+            }
+            Button("No") {}
         }
     }
 }
