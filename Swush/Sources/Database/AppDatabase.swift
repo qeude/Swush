@@ -32,6 +32,7 @@ struct AppDatabase {
                   t.autoIncrementedPrimaryKey("id")
                   t.column("name", .text).notNull()
                   t.column("creationDate", .datetime).notNull()
+                  t.column("updateDate", .datetime).notNull()
                   t.column("identityString", .text).notNull()
                   t.column("rawPayload", .text).notNull()
                   t.column("token", .text).notNull()
@@ -41,12 +42,6 @@ struct AppDatabase {
                   t.column("isSandbox", .boolean).notNull()
               }
           }
-          
-          // Migrations for future application versions will be inserted here:
-          // migrator.registerMigration(...) { db in
-          //     ...
-          // }
-          
           return migrator
       }
 }
