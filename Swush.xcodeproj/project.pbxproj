@@ -13,6 +13,9 @@
 		010E487427A69EC400D950EF /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 010E487327A69EC400D950EF /* Sparkle */; };
 		010E487727A69F1A00D950EF /* UpdaterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E487627A69F1A00D950EF /* UpdaterViewModel.swift */; };
 		010E487927A69F4900D950EF /* CheckForUpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E487827A69F4900D950EF /* CheckForUpdatesView.swift */; };
+		012CEBFC27A7204400D76A5A /* Published+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CEBFB27A7204400D76A5A /* Published+Extensions.swift */; };
+		012CEBFF27A7221900D76A5A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CEBFE27A7221900D76A5A /* SettingsView.swift */; };
+		012CEC0127A7225000D76A5A /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CEC0027A7225000D76A5A /* GeneralSettingsView.swift */; };
 		012D75CD27A984CC00A55457 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D75CC27A984CC00A55457 /* AppState.swift */; };
 		0145B11B27A592B800E0EC43 /* APNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11A27A592B800E0EC43 /* APNS.swift */; };
 		0145B11E27A592E700E0EC43 /* URLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */; };
@@ -43,6 +46,9 @@
 		010E486E27A5BF7C00D950EF /* ApnsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApnsListView.swift; sourceTree = "<group>"; };
 		010E487627A69F1A00D950EF /* UpdaterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterViewModel.swift; sourceTree = "<group>"; };
 		010E487827A69F4900D950EF /* CheckForUpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesView.swift; sourceTree = "<group>"; };
+		012CEBFB27A7204400D76A5A /* Published+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Published+Extensions.swift"; sourceTree = "<group>"; };
+		012CEBFE27A7221900D76A5A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		012CEC0027A7225000D76A5A /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		012D75CC27A984CC00A55457 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		0145B11A27A592B800E0EC43 /* APNS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNS.swift; sourceTree = "<group>"; };
 		0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Extensions.swift"; sourceTree = "<group>"; };
@@ -100,6 +106,15 @@
 				010E487827A69F4900D950EF /* CheckForUpdatesView.swift */,
 			);
 			path = Updater;
+			sourceTree = "<group>";
+		};
+		012CEBFD27A7220900D76A5A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				012CEBFE27A7221900D76A5A /* SettingsView.swift */,
+				012CEC0027A7225000D76A5A /* GeneralSettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		0145B11927A592A900E0EC43 /* Models */ = {
@@ -176,6 +191,7 @@
 		014D0C8A27A1D83300C43A74 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				012CEBFD27A7220900D76A5A /* Settings */,
 				01C8269C27A87F8A0043E890 /* CreateApnsCommand */,
 				010E487527A69F0F00D950EF /* Updater */,
 				010E486D27A5BF6200D950EF /* ApnsList */,
@@ -202,6 +218,7 @@
 				0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */,
 				0145B12627A5973000E0EC43 /* String+Extensions.swift */,
 				0145B12F27A5A95200E0EC43 /* SecIdentity+Extensions.swift */,
+				012CEBFB27A7204400D76A5A /* Published+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -322,11 +339,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0145B12927A5975200E0EC43 /* SenderView.swift in Sources */,
+				012CEBFF27A7221900D76A5A /* SettingsView.swift in Sources */,
 				01C8269E27A87FD70043E890 /* CreateApnsCommandView.swift in Sources */,
 				010E486F27A5BF7C00D950EF /* ApnsListView.swift in Sources */,
 				012D75CD27A984CC00A55457 /* AppState.swift in Sources */,
 				010E487727A69F1A00D950EF /* UpdaterViewModel.swift in Sources */,
 				0145B11E27A592E700E0EC43 /* URLResponse+Extensions.swift in Sources */,
+				012CEBFC27A7204400D76A5A /* Published+Extensions.swift in Sources */,
 				014D0C8827A1D3C800C43A74 /* View+FormLabel.swift in Sources */,
 				0145B12327A593A000E0EC43 /* DependencyProvider.swift in Sources */,
 				0194C7D827A5B55300FB943F /* AppDatabase.swift in Sources */,
@@ -335,6 +354,7 @@
 				0145B12527A5950400E0EC43 /* SecIdentityType.swift in Sources */,
 				0145B13027A5A95200E0EC43 /* SecIdentity+Extensions.swift in Sources */,
 				010E486927A5BA8500D950EF /* Persistence.swift in Sources */,
+				012CEC0127A7225000D76A5A /* GeneralSettingsView.swift in Sources */,
 				0145B12E27A59A3D00E0EC43 /* APNS+Priority.swift in Sources */,
 				014D0C9027A1E61600C43A74 /* APNSService.swift in Sources */,
 				014D0C8627A1D1E300C43A74 /* SenderViewModel.swift in Sources */,

@@ -19,20 +19,26 @@ struct SwushApp: App {
                 .environmentObject(appState)
                 .environment(\.appDatabase, .shared)
                 .onAppear {
-                    if updaterViewModel.canCheckForUpdates {
-                        updaterViewModel.checkForUpdates()
-                    }
+                    updaterViewModel.checkForUpdatesInBackground()
                 }
+                .environmentObject(updaterViewModel)
         }
         .commands {
             CommandGroup(after: .appInfo) {
-                CheckForUpdatesView(viewModel: updaterViewModel)
+                CheckForUpdatesView()
+                    .environmentObject(updaterViewModel)
             }
             CommandGroup(replacing: .newItem) {
                 CreateApnsCommandView()
                     .environmentObject(appState)
             }
         }
+        
+        #if os(macOS)
+            Settings {
+                SettingsView().environmentObject(updaterViewModel)
+            }
+        #endif
     }
 }
 
