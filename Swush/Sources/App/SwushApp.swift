@@ -35,6 +35,10 @@ struct SwushApp: App {
                 SaveApnsView()
                     .environmentObject(appState)
             }
+            CommandGroup(after: .saveItem) {
+                DeleteApnsView()
+                    .environmentObject(appState)
+            }
         }
 
         #if os(macOS)

@@ -72,6 +72,7 @@ struct ApnsListView: View {
                 } label: {
                     Text("Delete")
                 }
+                .keyboardShortcut(.delete, modifiers: [.command])
             }
             .alert(
                 "Do you really want to delete the APNS named \"\(appState.apnsToDelete?.name ?? "")\"? ",
