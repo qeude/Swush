@@ -8,9 +8,9 @@
 import AppKit
 
 extension NSTextView {
-  open override var frame: CGRect {
-    didSet {
-      self.isAutomaticQuoteSubstitutionEnabled = false
+    override open var frame: CGRect {
+        didSet {
+            isAutomaticQuoteSubstitutionEnabled = false
+        }
     }
-  }
 }

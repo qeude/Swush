@@ -8,11 +8,11 @@
 import Foundation
 
 struct DependencyProvider {
-  static var secIdentityService: SecIdentityService {
-    return SecIdentityService()
-  }
+    static var secIdentityService: SecIdentityService {
+        SecIdentityService()
+    }
 
-  static var apnsService: APNSService {
-    return APNSService()
-  }
+    static var apnsService: APNSService {
+        APNSService()
+    }
 }

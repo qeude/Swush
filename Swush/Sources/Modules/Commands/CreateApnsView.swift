@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct CreateApnsView: View {
-  @EnvironmentObject var appState: AppState
+    @EnvironmentObject var appState: AppState
 
-  var body: some View {
-    Button {
-      Task {
-        await appState.create()
-      }
-    } label: {
-      Text("New APNS")
+    var body: some View {
+        Button {
+            Task {
+                await appState.create()
+            }
+        } label: {
+            Text("New APNS")
+        }
+        .keyboardShortcut("n", modifiers: [.command])
+        .disabled(!appState.canCreateNewApns)
     }
-    .keyboardShortcut("n", modifiers: [.command])
-    .disabled(!appState.canCreateNewApns)
-  }
 }
 
 struct CreateApnsView_Previews: PreviewProvider {
-  static var previews: some View {
-    CreateApnsView()
-  }
+    static var previews: some View {
+        CreateApnsView()
+    }
 }

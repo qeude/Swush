@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct SaveApnsView: View {
-  @EnvironmentObject var appState: AppState
+    @EnvironmentObject var appState: AppState
 
-  var body: some View {
-    Button {
-      Task {
-        await appState.save()
-      }
-    } label: {
-      Text("Save APNS")
+    var body: some View {
+        Button {
+            Task {
+                await appState.save()
+            }
+        } label: {
+            Text("Save APNS")
+        }
+        .keyboardShortcut("s", modifiers: [.command])
+        .disabled(appState.selectedApns == nil)
     }
-    .keyboardShortcut("s", modifiers: [.command])
-    .disabled(appState.selectedApns == nil)
-  }
 }
 
 struct SaveApnsView_Previews: PreviewProvider {
-  static var previews: some View {
-    SaveApnsView()
-  }
+    static var previews: some View {
+        SaveApnsView()
+    }
 }
