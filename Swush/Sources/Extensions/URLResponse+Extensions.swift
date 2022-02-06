@@ -8,10 +8,10 @@
 import Foundation
 
 extension URLResponse {
-    var status: Int? {
-        if let httpResponse = self as? HTTPURLResponse {
-            return httpResponse.statusCode
-        }
-        return nil
+  var status: Int? {
+    if let httpResponse = self as? HTTPURLResponse {
+      return httpResponse.statusCode
     }
+    return nil
+  }
 }

@@ -70,6 +70,7 @@
 		014D0C8527A1D1E300C43A74 /* SenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderViewModel.swift; sourceTree = "<group>"; };
 		014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+FormLabel.swift"; sourceTree = "<group>"; };
 		014D0C8F27A1E61600C43A74 /* APNSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSService.swift; sourceTree = "<group>"; };
+		015E27AE27B02F80002D50B4 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		0194C7D727A5B55300FB943F /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
 		01C8269727A8798D0043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
 		01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		014D0C6627A1AECC00C43A74 = {
 			isa = PBXGroup;
 			children = (
+				015E27AD27B02F5F002D50B4 /* BuildTools */,
 				014D0C7127A1AECC00C43A74 /* Swush */,
 				014D0C7027A1AECC00C43A74 /* Products */,
 				01C8269927A87A020043E890 /* Recovered References */,
@@ -233,6 +235,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		015E27AD27B02F5F002D50B4 /* BuildTools */ = {
+			isa = PBXGroup;
+			children = (
+				015E27AE27B02F80002D50B4 /* Package.swift */,
+			);
+			path = BuildTools;
+			sourceTree = "<group>";
+		};
 		0194C7D627A5B4EA00FB943F /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +276,7 @@
 			buildConfigurationList = 014D0C7E27A1AECD00C43A74 /* Build configuration list for PBXNativeTarget "Swush" */;
 			buildPhases = (
 				014D0C6B27A1AECC00C43A74 /* Sources */,
+				015E27B027B03074002D50B4 /* Linting */,
 				014D0C6C27A1AECC00C43A74 /* Frameworks */,
 				014D0C6D27A1AECC00C43A74 /* Resources */,
 			);
@@ -332,6 +343,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		015E27B027B03074002D50B4 /* Linting */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Linting;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file \nswift run -c release --package-path BuildTools swift-format -m format -i -r \"${PROJECT_DIR}/${PROJECT_NAME}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		014D0C6B27A1AECC00C43A74 /* Sources */ = {

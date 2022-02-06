@@ -125,3 +125,5 @@ iOSInjectionProject/
 Build/
 Releases/
 .env
+BuildTools/.build
+BuildTools/.swiftpm

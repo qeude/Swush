@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct DependencyProvider {    
-    static var secIdentityService: SecIdentityService {
-        return SecIdentityService()
-    }
-    
-    static var apnsService: APNSService {
-        return APNSService()
-    }
+struct DependencyProvider {
+  static var secIdentityService: SecIdentityService {
+    return SecIdentityService()
+  }
+
+  static var apnsService: APNSService {
+    return APNSService()
+  }
 }
