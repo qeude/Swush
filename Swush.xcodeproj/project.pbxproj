@@ -43,6 +43,7 @@
 		0194C7D827A5B55300FB943F /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194C7D727A5B55300FB943F /* AppDatabase.swift */; };
 		01C8269B27A87C450043E890 /* NSTextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */; };
 		01C8269E27A87FD70043E890 /* CreateApnsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C8269D27A87FD70043E890 /* CreateApnsView.swift */; };
+		01F8C2E627B04B8300B37588 /* View+ConditionalModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8C2E527B04B8300B37588 /* View+ConditionalModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		01C8269727A8798D0043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
 		01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
 		01C8269D27A87FD70043E890 /* CreateApnsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateApnsView.swift; sourceTree = "<group>"; };
+		01F8C2E527B04B8300B37588 /* View+ConditionalModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ConditionalModifier.swift"; sourceTree = "<group>"; };
 		01FFBC7E27A6A6C400D8780C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -249,6 +251,7 @@
 				0145B12627A5973000E0EC43 /* String+Extensions.swift */,
 				0145B12F27A5A95200E0EC43 /* SecIdentity+Extensions.swift */,
 				012CEBFB27A7204400D76A5A /* Published+Extensions.swift */,
+				01F8C2E527B04B8300B37588 /* View+ConditionalModifier.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			files = (
 				0145B12927A5975200E0EC43 /* SenderView.swift in Sources */,
 				012CEBFF27A7221900D76A5A /* SettingsView.swift in Sources */,
+				01F8C2E627B04B8300B37588 /* View+ConditionalModifier.swift in Sources */,
 				01C8269E27A87FD70043E890 /* CreateApnsView.swift in Sources */,
 				010E486F27A5BF7C00D950EF /* ApnsListView.swift in Sources */,
 				012D75CD27A984CC00A55457 /* AppState.swift in Sources */,

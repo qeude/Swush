@@ -55,6 +55,11 @@ struct ApnsListView: View {
                 }
             }
             .frame(height: 30)
+            .if(appState.selectedApns == apns) { view in
+                view.onTapGesture(count: 2) {
+                    appState.startRenaming(apns)
+                }
+            }
             .contextMenu {
                 Button {
                     appState.startRenaming(apns)
