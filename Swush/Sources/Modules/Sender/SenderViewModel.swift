@@ -45,7 +45,11 @@ class SenderViewModel: ObservableObject {
     }
     
     func didChooseIdentity() {
-        guard let selectedIdentity = selectedIdentity else { return }
+        guard let selectedIdentity = selectedIdentity else {
+            topics = []
+            selectedTopic = ""
+            return
+        }
         let type = selectedIdentity.type
         switch type {
             case .universal:

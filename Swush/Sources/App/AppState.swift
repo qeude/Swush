@@ -14,13 +14,15 @@ class AppState: ObservableObject {
 
     @Published var apnsToRename: APNS? = nil
     @Published var newName: String = ""
-
-    @Published var renameTextFieldIsFocused: Bool = false
+    
+    @Published var canCreateNewApns: Bool = true
+    @Published var canRenameApns: Bool = true
     
     func startRenaming(_ apns: APNS) {
         newName = apns.name
         apnsToRename = apns
-        renameTextFieldIsFocused = true
+        canCreateNewApns = false
+        canRenameApns = false
     }
     
     func performRenaming() async {
@@ -30,6 +32,8 @@ class AppState: ObservableObject {
         }
         self.apnsToRename = nil
         newName = ""
+        canCreateNewApns = true
+        canRenameApns = true
     }
     
     func showDeleteAlert(for apns: APNS) {

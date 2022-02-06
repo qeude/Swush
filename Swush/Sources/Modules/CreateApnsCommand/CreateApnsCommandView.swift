@@ -18,7 +18,9 @@ struct CreateApnsCommandView: View {
             }
         } label: {
             Text("New APNS")
-        }.keyboardShortcut("n", modifiers: [.command])
+        }
+        .keyboardShortcut("n", modifiers: [.command])
+        .disabled(!appState.canCreateNewApns)
     }
     
     private func create() async {
