@@ -41,7 +41,7 @@ platform :mac do
       api_token: ENV["GITHUB_API_TOKEN"],
       name: "v#{version} 🚀",
       tag_name: "v#{version}",
-      description: (File.read("CHANGELOG") rescue "No changelog provided"),
+      description: (File.read("../CHANGELOG") rescue "No changelog provided"),
       commitish: "main",
       upload_assets: ["Releases/Swush-#{version}.zip"]
     )
