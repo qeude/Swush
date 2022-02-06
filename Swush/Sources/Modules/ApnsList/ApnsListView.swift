@@ -26,55 +26,56 @@ struct ApnsListView: View {
     }
 
     var body: some View {
-        List {
-            ForEach(filteredApnsList) { apns in
-                Group {
-                    if appState.apnsToRename?.id == apns.id {
-                        TextField(
-                            apns.name,
-                            text: $appState.newName, onEditingChanged: { editingChanged in
-                                if !editingChanged {
-                                    Task {
-                                        await appState.performRenaming()
-                                    }
+        List(filteredApnsList) { apns in
+            NavigationLink(
+                destination: SenderView(viewModel: SenderViewModel(apns: apns)),
+                isActive: appState.selectionBindingForId(id: apns.id)
+            )
+            {
+                if appState.apnsToRename?.id == apns.id {
+                    TextField(
+                        apns.name,
+                        text: $appState.newName, onEditingChanged: { editingChanged in
+                            if !editingChanged {
+                                Task {
+                                    await appState.performRenaming()
                                 }
-                            })
-                            .onDisappear {
-                                isFocused = false
                             }
-                            .onAppear {
-                                isFocused = true
-                            }
-                            .focused($isFocused)
-                    } else {
-                        NavigationLink(apns.name) {
-                            SenderView(viewModel: SenderViewModel(apns: apns))
+                        })
+                        .onDisappear {
+                            isFocused = false
                         }
-                    }
-                }
-                .frame(height: 30)
-                .contextMenu {
-                    Button {
-                        appState.startRenaming(apns)
-                    } label: {
-                        Text("Rename")
-                    }
-                    .disabled(!appState.canRenameApns)
-                    Button {
-                        appState.showDeleteAlert(for: apns)
-                    } label: {
-                        Text("Delete")
-                    }
-                }
-                .alert("Do you really want to delete the APNS named \"\(appState.apnsToDelete?.name ?? "")\"? ", isPresented: $appState.showDeleteAlert) {
-                    Button("Yes") {
-                        Task {
-                            guard let apnsToDelete = appState.apnsToDelete else { return }
-                            await appState.delete(apns: apnsToDelete)
+                        .onAppear {
+                            isFocused = true
                         }
-                    }
-                    Button("No") {}
+                        .focused($isFocused)
+                } else {
+                    Text(apns.name)
+                    
                 }
+            }
+            .frame(height: 30)
+            .contextMenu {
+                Button {
+                    appState.startRenaming(apns)
+                } label: {
+                    Text("Rename")
+                }
+                .disabled(!appState.canRenameApns)
+                Button {
+                    appState.showDeleteAlert(for: apns)
+                } label: {
+                    Text("Delete")
+                }
+            }
+            .alert("Do you really want to delete the APNS named \"\(appState.apnsToDelete?.name ?? "")\"? ", isPresented: $appState.showDeleteAlert) {
+                Button("Yes") {
+                    Task {
+                        guard let apnsToDelete = appState.apnsToDelete else { return }
+                        await appState.delete(apns: apnsToDelete)
+                    }
+                }
+                Button("No") {}
             }
         }
         .searchable(text: $searchText, placement: .sidebar)

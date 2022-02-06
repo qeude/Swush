@@ -19,6 +19,7 @@ final class UpdaterViewModel: ObservableObject {
         // This is where you can also pass an updater delegate if you need one
         updaterController = SPUStandardUpdaterController(updaterDelegate: nil, userDriverDelegate: nil)
 
+        automaticallyChecksForUpdates = updaterController.updater.automaticallyChecksForUpdates
         updaterController.updater.publisher(for: \.canCheckForUpdates)
             .assign(to: &$canCheckForUpdates)
     }

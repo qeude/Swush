@@ -11,7 +11,7 @@ import GRDB
 import GRDBQuery
 import Combine
 
-struct APNS: Identifiable {
+struct APNS: Identifiable, Hashable {
     var id: Int64?
     var name: String
     let creationDate: Date

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 class AppState: ObservableObject {
@@ -17,6 +18,19 @@ class AppState: ObservableObject {
     
     @Published var canCreateNewApns: Bool = true
     @Published var canRenameApns: Bool = true
+    
+    @Published var selectedApnsId: Int64? = nil
+    
+    func selectionBindingForId(id: Int64?) -> Binding<Bool> {
+            Binding<Bool> { () -> Bool in
+                self.selectedApnsId == id
+            } set: { (newValue) in
+                if newValue {
+                    self.selectedApnsId = id
+                }
+            }
+
+        }
     
     func startRenaming(_ apns: APNS) {
         newName = apns.name
@@ -75,6 +89,7 @@ class AppState: ObservableObject {
         do {
             var apns = APNS.new
             try await AppDatabase.shared.saveAPNS(&apns)
+            selectedApnsId = apns.id
             startRenaming(apns)
         } catch {
             print(error)
