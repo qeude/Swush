@@ -24,7 +24,7 @@ platform :mac do
     version = get_version_number
     build = get_build_number
     build_app(
-      scheme: "Swush",
+      scheme: "Swush - Release",
       clean: true,
       skip_codesigning: true,
       silent: true,

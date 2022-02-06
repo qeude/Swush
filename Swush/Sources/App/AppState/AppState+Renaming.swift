@@ -43,6 +43,7 @@ extension AppState {
                 isSandbox: apns.isSandbox
             )
             try await AppDatabase.shared.saveAPNS(&apns)
+            selectedApns = apns
         } catch {
             print(error)
         }
