@@ -55,7 +55,7 @@ struct SenderView: View {
                         }
                     } label: {
                         Text("🚀 Send")
-                    }
+                    }.keyboardShortcut(.return, modifiers: [.command])
                 }
             }
         }
