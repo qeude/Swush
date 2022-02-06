@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-struct CreateApnsCommandView: View {
-  @Environment(\.appDatabase) private var appDatabase
+struct CreateApnsView: View {
   @EnvironmentObject var appState: AppState
 
   var body: some View {
@@ -22,19 +21,10 @@ struct CreateApnsCommandView: View {
     .keyboardShortcut("n", modifiers: [.command])
     .disabled(!appState.canCreateNewApns)
   }
-
-  private func create() async {
-    do {
-      var apns = APNS.new
-      try await appDatabase.saveAPNS(&apns)
-    } catch {
-      print(error)
-    }
-  }
 }
 
-struct CreateApnsCommandView_Previews: PreviewProvider {
+struct CreateApnsView_Previews: PreviewProvider {
   static var previews: some View {
-    CreateApnsCommandView()
+    CreateApnsView()
   }
 }

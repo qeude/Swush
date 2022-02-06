@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0101ACF927B036A50010E212 /* SaveApnsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101ACF827B036A50010E212 /* SaveApnsView.swift */; };
+		0101ACFC27B03EE50010E212 /* AppState+Renaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101ACFB27B03EE50010E212 /* AppState+Renaming.swift */; };
+		0101ACFE27B03F850010E212 /* AppState+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101ACFD27B03F850010E212 /* AppState+Creation.swift */; };
+		0101AD0027B03FBB0010E212 /* AppState+Deletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101ACFF27B03FBB0010E212 /* AppState+Deletion.swift */; };
+		0101AD0227B03FFC0010E212 /* AppState+SendPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101AD0127B03FFC0010E212 /* AppState+SendPush.swift */; };
 		010E486927A5BA8500D950EF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E486827A5BA8500D950EF /* Persistence.swift */; };
 		010E486C27A5BC7500D950EF /* GRDBQuery in Frameworks */ = {isa = PBXBuildFile; productRef = 010E486B27A5BC7500D950EF /* GRDBQuery */; };
 		010E486F27A5BF7C00D950EF /* ApnsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E486E27A5BF7C00D950EF /* ApnsListView.swift */; };
@@ -33,15 +38,19 @@
 		014D0C7727A1AECD00C43A74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014D0C7627A1AECD00C43A74 /* Assets.xcassets */; };
 		014D0C7A27A1AECD00C43A74 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014D0C7927A1AECD00C43A74 /* Preview Assets.xcassets */; };
 		014D0C8427A1BCEC00C43A74 /* SecIdentityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8327A1BCEC00C43A74 /* SecIdentityService.swift */; };
-		014D0C8627A1D1E300C43A74 /* SenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8527A1D1E300C43A74 /* SenderViewModel.swift */; };
 		014D0C8827A1D3C800C43A74 /* View+FormLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */; };
 		014D0C9027A1E61600C43A74 /* APNSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8F27A1E61600C43A74 /* APNSService.swift */; };
 		0194C7D827A5B55300FB943F /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194C7D727A5B55300FB943F /* AppDatabase.swift */; };
 		01C8269B27A87C450043E890 /* NSTextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */; };
-		01C8269E27A87FD70043E890 /* CreateApnsCommandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C8269D27A87FD70043E890 /* CreateApnsCommandView.swift */; };
+		01C8269E27A87FD70043E890 /* CreateApnsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C8269D27A87FD70043E890 /* CreateApnsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0101ACF827B036A50010E212 /* SaveApnsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveApnsView.swift; sourceTree = "<group>"; };
+		0101ACFB27B03EE50010E212 /* AppState+Renaming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Renaming.swift"; sourceTree = "<group>"; };
+		0101ACFD27B03F850010E212 /* AppState+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Creation.swift"; sourceTree = "<group>"; };
+		0101ACFF27B03FBB0010E212 /* AppState+Deletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Deletion.swift"; sourceTree = "<group>"; };
+		0101AD0127B03FFC0010E212 /* AppState+SendPush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+SendPush.swift"; sourceTree = "<group>"; };
 		010E486827A5BA8500D950EF /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		010E486E27A5BF7C00D950EF /* ApnsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApnsListView.swift; sourceTree = "<group>"; };
 		010E487627A69F1A00D950EF /* UpdaterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterViewModel.swift; sourceTree = "<group>"; };
@@ -67,14 +76,13 @@
 		014D0C7927A1AECD00C43A74 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		014D0C7B27A1AECD00C43A74 /* Swush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Swush.entitlements; sourceTree = "<group>"; };
 		014D0C8327A1BCEC00C43A74 /* SecIdentityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecIdentityService.swift; sourceTree = "<group>"; };
-		014D0C8527A1D1E300C43A74 /* SenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderViewModel.swift; sourceTree = "<group>"; };
 		014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+FormLabel.swift"; sourceTree = "<group>"; };
 		014D0C8F27A1E61600C43A74 /* APNSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSService.swift; sourceTree = "<group>"; };
 		015E27AE27B02F80002D50B4 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		0194C7D727A5B55300FB943F /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
 		01C8269727A8798D0043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
 		01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
-		01C8269D27A87FD70043E890 /* CreateApnsCommandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateApnsCommandView.swift; sourceTree = "<group>"; };
+		01C8269D27A87FD70043E890 /* CreateApnsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateApnsView.swift; sourceTree = "<group>"; };
 		01FFBC7E27A6A6C400D8780C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +100,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0101ACF727B036350010E212 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				010E487527A69F0F00D950EF /* Updater */,
+				01C8269D27A87FD70043E890 /* CreateApnsView.swift */,
+				0101ACF827B036A50010E212 /* SaveApnsView.swift */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
+		0101ACFA27B03ECF0010E212 /* AppState */ = {
+			isa = PBXGroup;
+			children = (
+				012D75CC27A984CC00A55457 /* AppState.swift */,
+				0101ACFB27B03EE50010E212 /* AppState+Renaming.swift */,
+				0101ACFD27B03F850010E212 /* AppState+Creation.swift */,
+				0101ACFF27B03FBB0010E212 /* AppState+Deletion.swift */,
+				0101AD0127B03FFC0010E212 /* AppState+SendPush.swift */,
+			);
+			path = AppState;
+			sourceTree = "<group>";
+		};
 		010E486D27A5BF6200D950EF /* ApnsList */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,7 +163,6 @@
 		0145B12A27A597B200E0EC43 /* Sender */ = {
 			isa = PBXGroup;
 			children = (
-				014D0C8527A1D1E300C43A74 /* SenderViewModel.swift */,
 				0145B12827A5975200E0EC43 /* SenderView.swift */,
 			);
 			path = Sender;
@@ -193,9 +222,8 @@
 		014D0C8A27A1D83300C43A74 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0101ACF727B036350010E212 /* Commands */,
 				012CEBFD27A7220900D76A5A /* Settings */,
-				01C8269C27A87F8A0043E890 /* CreateApnsCommand */,
-				010E487527A69F0F00D950EF /* Updater */,
 				010E486D27A5BF6200D950EF /* ApnsList */,
 				0145B12A27A597B200E0EC43 /* Sender */,
 				014D0C7427A1AECC00C43A74 /* ContentView.swift */,
@@ -206,8 +234,8 @@
 		014D0C8B27A1D83800C43A74 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				0101ACFA27B03ECF0010E212 /* AppState */,
 				014D0C7227A1AECC00C43A74 /* SwushApp.swift */,
-				012D75CC27A984CC00A55457 /* AppState.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -258,14 +286,6 @@
 				01C8269727A8798D0043E890 /* NSTextView+Extensions.swift */,
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		01C8269C27A87F8A0043E890 /* CreateApnsCommand */ = {
-			isa = PBXGroup;
-			children = (
-				01C8269D27A87FD70043E890 /* CreateApnsCommandView.swift */,
-			);
-			path = CreateApnsCommand;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,7 +381,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file \nswift run -c release --package-path BuildTools swift-format -m format -i -r \"${PROJECT_DIR}/${PROJECT_NAME}\"\n";
+			shellScript = "#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file \n#swift run -c release --package-path BuildTools swift-format -m lint -r \"${PROJECT_DIR}/${PROJECT_NAME}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -372,9 +392,10 @@
 			files = (
 				0145B12927A5975200E0EC43 /* SenderView.swift in Sources */,
 				012CEBFF27A7221900D76A5A /* SettingsView.swift in Sources */,
-				01C8269E27A87FD70043E890 /* CreateApnsCommandView.swift in Sources */,
+				01C8269E27A87FD70043E890 /* CreateApnsView.swift in Sources */,
 				010E486F27A5BF7C00D950EF /* ApnsListView.swift in Sources */,
 				012D75CD27A984CC00A55457 /* AppState.swift in Sources */,
+				0101ACFE27B03F850010E212 /* AppState+Creation.swift in Sources */,
 				010E487727A69F1A00D950EF /* UpdaterViewModel.swift in Sources */,
 				0145B11E27A592E700E0EC43 /* URLResponse+Extensions.swift in Sources */,
 				012CEBFC27A7204400D76A5A /* Published+Extensions.swift in Sources */,
@@ -383,20 +404,23 @@
 				0194C7D827A5B55300FB943F /* AppDatabase.swift in Sources */,
 				014D0C8427A1BCEC00C43A74 /* SecIdentityService.swift in Sources */,
 				0145B12727A5973000E0EC43 /* String+Extensions.swift in Sources */,
+				0101ACF927B036A50010E212 /* SaveApnsView.swift in Sources */,
 				0145B12527A5950400E0EC43 /* SecIdentityType.swift in Sources */,
 				0145B13027A5A95200E0EC43 /* SecIdentity+Extensions.swift in Sources */,
 				010E486927A5BA8500D950EF /* Persistence.swift in Sources */,
 				012CEC0127A7225000D76A5A /* GeneralSettingsView.swift in Sources */,
 				0145B12E27A59A3D00E0EC43 /* APNS+Priority.swift in Sources */,
 				014D0C9027A1E61600C43A74 /* APNSService.swift in Sources */,
-				014D0C8627A1D1E300C43A74 /* SenderViewModel.swift in Sources */,
+				0101AD0227B03FFC0010E212 /* AppState+SendPush.swift in Sources */,
 				014D0C7527A1AECC00C43A74 /* ContentView.swift in Sources */,
 				014D0C7327A1AECC00C43A74 /* SwushApp.swift in Sources */,
 				0145B12C27A5984D00E0EC43 /* APNS+CertificateType.swift in Sources */,
 				0145B12027A5930800E0EC43 /* APNS+PayloadType.swift in Sources */,
+				0101ACFC27B03EE50010E212 /* AppState+Renaming.swift in Sources */,
 				0145B11B27A592B800E0EC43 /* APNS.swift in Sources */,
 				01C8269B27A87C450043E890 /* NSTextView+Extensions.swift in Sources */,
 				010E487927A69F4900D950EF /* CheckForUpdatesView.swift in Sources */,
+				0101AD0027B03FBB0010E212 /* AppState+Deletion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

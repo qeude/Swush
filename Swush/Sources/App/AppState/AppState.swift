@@ -1,17 +1,39 @@
 //
-//  SwushViewModel.swift
+//  AppState.swift
 //  Swush
 //
-//  Created by Quentin Eude on 26/01/2022.
+//  Created by Quentin Eude on 01/02/2022.
 //
 
-import SecurityInterface
+import Foundation
 import SwiftUI
 
-class SenderViewModel: ObservableObject {
+@MainActor
+class AppState: ObservableObject {
+  //MARK: Sidebar
+  @Published var showDeleteAlert: Bool = false
+  @Published var apnsToDelete: APNS? = nil
+
+  @Published var apnsToRename: APNS? = nil
+  @Published var newName: String = ""
+
+  @Published var canCreateNewApns: Bool = true
+  @Published var canRenameApns: Bool = true
+
+  @Published var selectedApns: APNS? = nil {
+    didSet {
+      if let apns = selectedApns, oldValue != selectedApns {
+        setApns(apns)
+      }
+    }
+  }
+
+  //MARK: APNS form
   @Published var selectedIdentity: SecIdentity? = nil {
     didSet {
-      didChooseIdentity()
+      if oldValue != selectedIdentity {
+        didChooseIdentity()
+      }
     }
   }
   @Published var name: String = ""
@@ -25,11 +47,7 @@ class SenderViewModel: ObservableObject {
   @Published var showCertificateTypePicker: Bool = false
   @Published var selectedPayloadType: APNS.PayloadType = .alert
 
-  let id: Int64
-  let creationDate: Date
-  let updateDate: Date
-
-  init(apns: APNS) {
+  private func setApns(_ apns: APNS) {
     selectedIdentity = apns.identity
     selectedCertificateType = apns.isSandbox ? .sandbox : .production
     token = apns.token
@@ -39,13 +57,10 @@ class SenderViewModel: ObservableObject {
     selectedTopic = apns.topic
     selectedPayloadType = apns.payloadType
     name = apns.name
-    id = apns.id!
-    creationDate = apns.creationDate
-    updateDate = apns.updateDate
     didChooseIdentity()
   }
 
-  func didChooseIdentity() {
+  private func didChooseIdentity() {
     guard let selectedIdentity = selectedIdentity else {
       topics = []
       selectedTopic = ""
@@ -65,33 +80,13 @@ class SenderViewModel: ObservableObject {
     selectedTopic = topics.first ?? ""
   }
 
-  func sendPush() async throws {
-    guard let _ = payload.toJSON(), let identity = selectedIdentity else { return }
-    let apns = APNS(
-      name: name, creationDate: creationDate, updateDate: updateDate,
-      identityString: identity.humanReadable, rawPayload: payload, token: token,
-      topic: selectedTopic, payloadType: selectedPayloadType, priority: priority,
-      isSandbox: selectedCertificateType == .sandbox)
-    try await DependencyProvider.apnsService.sendPush(for: apns)
-  }
-
-  func save() async {
-    do {
-      var apns = APNS(
-        id: id,
-        name: name,
-        creationDate: creationDate,
-        updateDate: updateDate,
-        identityString: selectedIdentity!.humanReadable,
-        rawPayload: payload,
-        token: token,
-        topic: selectedTopic,
-        payloadType: selectedPayloadType,
-        priority: priority,
-        isSandbox: selectedCertificateType == .sandbox)
-      try await AppDatabase.shared.saveAPNS(&apns)
-    } catch {
-      print(error)
+  func selectionBindingForId(apns: APNS?) -> Binding<Bool> {
+    Binding<Bool> { () -> Bool in
+      self.selectedApns?.id == apns?.id
+    } set: { (newValue) in
+      if newValue {
+        self.selectedApns = apns
+      }
     }
   }
 }

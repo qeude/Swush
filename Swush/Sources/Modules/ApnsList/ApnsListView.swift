@@ -28,8 +28,8 @@ struct ApnsListView: View {
   var body: some View {
     List(filteredApnsList) { apns in
       NavigationLink(
-        destination: SenderView(viewModel: SenderViewModel(apns: apns)),
-        isActive: appState.selectionBindingForId(id: apns.id)
+        destination: SenderView(),
+        isActive: appState.selectionBindingForId(apns: apns)
       ) {
         if appState.apnsToRename?.id == apns.id {
           TextField(
@@ -52,7 +52,6 @@ struct ApnsListView: View {
           .focused($isFocused)
         } else {
           Text(apns.name)
-
         }
       }
       .frame(height: 30)

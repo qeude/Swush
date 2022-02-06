@@ -28,7 +28,11 @@ struct SwushApp: App {
           .environmentObject(updaterViewModel)
       }
       CommandGroup(replacing: .newItem) {
-        CreateApnsCommandView()
+        CreateApnsView()
+          .environmentObject(appState)
+      }
+      CommandGroup(replacing: .saveItem) {
+        SaveApnsView()
           .environmentObject(appState)
       }
     }
