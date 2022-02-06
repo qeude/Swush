@@ -1,3 +1,15 @@
+# ✨ Features
+
+- Add shortcut to add apns
+- Added renaming in the apns list
+- Check update in background
+- Added a better APNS sidebar selection
+- Add save command
+- Added keyboard shortcut to send push
+- Added on selected to rename
+- Added keyboard shortcut to delete apns
+
 # 🐛 Bug fixes
 
-- Fixed UI bug on certificate type picker which didn't appear on init.
+- Fixed quotes char in TextEditor
+- Fixed apns renaming
