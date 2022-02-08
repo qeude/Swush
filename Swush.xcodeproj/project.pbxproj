@@ -22,6 +22,7 @@
 		012CEBFF27A7221900D76A5A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CEBFE27A7221900D76A5A /* SettingsView.swift */; };
 		012CEC0127A7225000D76A5A /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CEC0027A7225000D76A5A /* GeneralSettingsView.swift */; };
 		012D75CD27A984CC00A55457 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D75CC27A984CC00A55457 /* AppState.swift */; };
+		013F50A627B2F9BC002B7970 /* APNS+CertificateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F50A527B2F9BC002B7970 /* APNS+CertificateType.swift */; };
 		0145B11B27A592B800E0EC43 /* APNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11A27A592B800E0EC43 /* APNS.swift */; };
 		0145B11E27A592E700E0EC43 /* URLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */; };
 		0145B12027A5930800E0EC43 /* APNS+PayloadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11F27A5930800E0EC43 /* APNS+PayloadType.swift */; };
@@ -29,7 +30,7 @@
 		0145B12527A5950400E0EC43 /* SecIdentityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12427A5950400E0EC43 /* SecIdentityType.swift */; };
 		0145B12727A5973000E0EC43 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12627A5973000E0EC43 /* String+Extensions.swift */; };
 		0145B12927A5975200E0EC43 /* SenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12827A5975200E0EC43 /* SenderView.swift */; };
-		0145B12C27A5984D00E0EC43 /* APNS+CertificateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12B27A5984D00E0EC43 /* APNS+CertificateType.swift */; };
+		0145B12C27A5984D00E0EC43 /* APNS+IdentityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12B27A5984D00E0EC43 /* APNS+IdentityType.swift */; };
 		0145B12E27A59A3D00E0EC43 /* APNS+Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12D27A59A3D00E0EC43 /* APNS+Priority.swift */; };
 		0145B13027A5A95200E0EC43 /* SecIdentity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12F27A5A95200E0EC43 /* SecIdentity+Extensions.swift */; };
 		0145B13327A5B12300E0EC43 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 0145B13227A5B12300E0EC43 /* GRDB */; };
@@ -61,6 +62,7 @@
 		012CEBFE27A7221900D76A5A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		012CEC0027A7225000D76A5A /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		012D75CC27A984CC00A55457 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		013F50A527B2F9BC002B7970 /* APNS+CertificateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+CertificateType.swift"; sourceTree = "<group>"; };
 		0145B11A27A592B800E0EC43 /* APNS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNS.swift; sourceTree = "<group>"; };
 		0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		0145B11F27A5930800E0EC43 /* APNS+PayloadType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+PayloadType.swift"; sourceTree = "<group>"; };
@@ -68,7 +70,7 @@
 		0145B12427A5950400E0EC43 /* SecIdentityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecIdentityType.swift; sourceTree = "<group>"; };
 		0145B12627A5973000E0EC43 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		0145B12827A5975200E0EC43 /* SenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderView.swift; sourceTree = "<group>"; };
-		0145B12B27A5984D00E0EC43 /* APNS+CertificateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+CertificateType.swift"; sourceTree = "<group>"; };
+		0145B12B27A5984D00E0EC43 /* APNS+IdentityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+IdentityType.swift"; sourceTree = "<group>"; };
 		0145B12D27A59A3D00E0EC43 /* APNS+Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+Priority.swift"; sourceTree = "<group>"; };
 		0145B12F27A5A95200E0EC43 /* SecIdentity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SecIdentity+Extensions.swift"; sourceTree = "<group>"; };
 		014D0C6F27A1AECC00C43A74 /* Swush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swush.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,7 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				0145B11A27A592B800E0EC43 /* APNS.swift */,
-				0145B12B27A5984D00E0EC43 /* APNS+CertificateType.swift */,
+				013F50A527B2F9BC002B7970 /* APNS+CertificateType.swift */,
+				0145B12B27A5984D00E0EC43 /* APNS+IdentityType.swift */,
 				0145B11F27A5930800E0EC43 /* APNS+PayloadType.swift */,
 				0145B12D27A59A3D00E0EC43 /* APNS+Priority.swift */,
 				0145B12427A5950400E0EC43 /* SecIdentityType.swift */,
@@ -387,7 +390,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd BuildTools\nSDKROOT=(xcrun --sdk macosx --show-sdk-path)\n#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file\nswift run -c release swiftformat --lint \"$SRCROOT\"\n";
+			shellScript = "#cd BuildTools\n#SDKROOT=(xcrun --sdk macosx --show-sdk-path)\n#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file\n#swift run -c release swiftformat --lint \"$SRCROOT\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -419,10 +422,11 @@
 				012CEC0127A7225000D76A5A /* GeneralSettingsView.swift in Sources */,
 				0145B12E27A59A3D00E0EC43 /* APNS+Priority.swift in Sources */,
 				014D0C9027A1E61600C43A74 /* APNSService.swift in Sources */,
+				013F50A627B2F9BC002B7970 /* APNS+CertificateType.swift in Sources */,
 				0101AD0227B03FFC0010E212 /* AppState+SendPush.swift in Sources */,
 				014D0C7527A1AECC00C43A74 /* ContentView.swift in Sources */,
 				014D0C7327A1AECC00C43A74 /* SwushApp.swift in Sources */,
-				0145B12C27A5984D00E0EC43 /* APNS+CertificateType.swift in Sources */,
+				0145B12C27A5984D00E0EC43 /* APNS+IdentityType.swift in Sources */,
 				0145B12027A5930800E0EC43 /* APNS+PayloadType.swift in Sources */,
 				0101ACFC27B03EE50010E212 /* AppState+Renaming.swift in Sources */,
 				0145B11B27A592B800E0EC43 /* APNS.swift in Sources */,

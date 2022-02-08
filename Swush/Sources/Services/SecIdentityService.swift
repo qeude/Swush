@@ -12,7 +12,7 @@ struct SecIdentityService {
         let query: [String: Any] = [
             kSecClass as String: kSecClassIdentity,
             kSecMatchLimit as String: kSecMatchLimitAll,
-            kSecReturnRef as String: kCFBooleanTrue,
+            kSecReturnRef as String: kCFBooleanTrue!,
         ]
         var itemCopy: AnyObject?
         let status = SecItemCopyMatching(query as CFDictionary, &itemCopy)
