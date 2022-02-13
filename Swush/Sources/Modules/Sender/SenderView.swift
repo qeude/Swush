@@ -14,123 +14,170 @@ struct SenderView: View {
     
     @State private var selectedIdentity: SecIdentity? = nil
     @State private var apnsToken: String = ""
+    @State private var teamId: String = ""
+    @State private var keyId: String = ""
     @State private var selectedRawCertificateType: String = APNS.CertificateType.p12(certificate: nil).rawValue
 
     var body: some View {
-        Form {
-            certificateTypePickerForm
-            switch appState.selectedCertificateType {
-                case .p12: certificatePickerForm
-                case .p8: apnsTokenForm
+        ScrollView {
+            VStack(alignment: .leading, spacing: 32) {
+                authenticationForm
+                if !appState.selectedCertificateType.isEmptyOrNil {
+                    configForm
+                    payloadForm
+                }
             }
-            if !appState.selectedCertificateType.isEmptyOrNil {
-                topicForm
-                commonForm
-            }
-        }
-        .onChange(of: selectedIdentity, perform: { newValue in
-            appState.selectedCertificateType = .p12(certificate: selectedIdentity)
-        })
-        .onChange(of: apnsToken, perform: { newValue in
-            appState.selectedCertificateType = .p8(token: apnsToken)
-        })
-        .onChange(of: selectedRawCertificateType, perform: { newValue in
-            switch newValue {
+            .onChange(of: selectedIdentity, perform: { newValue in
+                appState.selectedCertificateType = .p12(certificate: selectedIdentity)
+            })
+            .onChange(of: apnsToken, perform: { newValue in
+                appState.selectedCertificateType = .p8(tokenFilename: apnsToken, teamId: "toto", keyId: "toto")
+            })
+            .onChange(of: selectedRawCertificateType, perform: { newValue in
+                switch newValue {
                 case "p12": appState.selectedCertificateType = .p12(certificate: selectedIdentity)
-                case "p8":  appState.selectedCertificateType =  .p8(token: apnsToken)
+                case "p8":  appState.selectedCertificateType =  .p8(tokenFilename: apnsToken, teamId: "toto", keyId: "toto")
                 default: fatalError()
+                }
+            })
+            .onAppear {
+                self.setup()
             }
-        })
-        .onAppear {
-            self.setup()
+            .navigationTitle(appState.name)
+            .animation(.default, value: appState.selectedCertificateType)
+            .padding(20)
         }
-        .navigationTitle(appState.name)
-        .animation(.interactiveSpring(), value: appState.selectedCertificateType)
-        .padding(20)
         .frame(minWidth: 350, minHeight: 350)
     }
     
-    private var certificatePickerForm: some View {
-        VStack {
-            Picker("Certificate: ", selection: $selectedIdentity) {
+    private var authenticationForm: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Authentication").font(.title).bold()
+            Picker(
+                selection: $selectedRawCertificateType,
+                content: {
+                    ForEach(APNS.CertificateType.allRawCases, id: \.self) {
+                        Text(APNS.CertificateType.placeholder(for: $0))
+                    }
+                },
+                label: {})
+                .pickerStyle(.segmented)
+                .fixedSize()
+            switch appState.selectedCertificateType {
+                case .p12: certificateAuthenticationForm
+                case .p8: keyAuthenticationForm
+            }
+        }
+    }
+    
+    private var certificateAuthenticationForm: some View {
+        Input(label: "Certificate") {
+            Picker(selection: $selectedIdentity, content: {
                 Text("Select a push certificate...").tag(nil as SecIdentity?)
                 ForEach(DependencyProvider.secIdentityService.identities ?? [], id: \.self) {
                     Text($0.humanReadable).tag($0 as SecIdentity?)
                 }
+            }, label: {})
+        }
+    }
+    
+    private var keyAuthenticationForm: some View {
+        Group {
+            Input(label: "Key filename") {
+                TextField(text: $apnsToken, prompt: Text("Paste the path to your .p8 file here ..."), label: {})
+                    .textFieldStyle(.roundedBorder)
             }
-            if selectedIdentity != nil, appState.showCertificateTypePicker {
-                Picker("Environment: ", selection: $appState.selectedIdentityType) {
-                    ForEach(APNS.IdentityType.allCases, id: \.self) {
-                        Text(APNS.IdentityType.from(value: $0))
-                    }
-                }.pickerStyle(.segmented)
+            Input(label: "Team id") {
+                TextField(text: $teamId, prompt: Text("Paste your team id here ..."), label: {})
+                    .textFieldStyle(.roundedBorder)
+            }
+            Input(label: "Key id") {
+                TextField(text: $keyId, prompt: Text("Paste your key id here ..."), label: {})
+                    .textFieldStyle(.roundedBorder)
             }
         }
     }
     
-    private var apnsTokenForm: some View {
-        TextField("APNs token: ", text: $apnsToken, prompt: Text("Paste the content of your .p8 file here ..."))
-            .textFieldStyle(.roundedBorder)
-    }
-    
-    private var certificateTypePickerForm: some View {
-        Picker("Certificate type: ", selection: $selectedRawCertificateType) {
-            ForEach(APNS.CertificateType.allRawCases, id: \.self) {
-                Text(APNS.CertificateType.placeholder(for: $0))
+    private var configForm: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Configuration").font(.title).bold()
+            Input(label: "Device push token") {
+                TextField(text: $appState.deviceToken, prompt: Text("Enter your device push token here..."), label: {})
+                    .textFieldStyle(.roundedBorder)
             }
-        }.pickerStyle(.segmented)
+            if selectedIdentity != nil, appState.showCertificateTypePicker {
+                Input(label: "Environment") {
+                    Picker(
+                        selection: $appState.selectedIdentityType,
+                        content: {
+                            ForEach(APNS.IdentityType.allCases, id: \.self) {
+                                Text(APNS.IdentityType.from(value: $0))
+                            }
+                        },
+                        label: {})
+                        .pickerStyle(.segmented)
+                        .fixedSize()
+                }
+            }
+            Input(label: "Push type") {
+                Picker(
+                    selection: $appState.selectedPayloadType,
+                    content: {
+                        ForEach(APNS.PayloadType.allCases, id: \.self) {
+                            Text(APNS.PayloadType.from(value: $0))
+                        }
+                    },
+                    label: {})
+            }
+            Input(label: "Priority") {
+                Picker(
+                    selection: $appState.priority,
+                    content: {
+                        ForEach(APNS.Priority.allCases, id: \.self) {
+                            Text($0.placeholder)
+                        }
+                    },
+                    label: {})
+                    .pickerStyle(.segmented)
+                    .fixedSize()
+            }
+            topicForm
+        }
+        .animation(.default, value: appState.showCertificateTypePicker)
     }
     
     private var topicForm: some View {
-        Group {
+        Input(label: "Bundle id") {
             switch appState.selectedCertificateType {
-                case .p12:
-                    Picker("Topic: ", selection: $appState.selectedTopic) {
-                        ForEach(appState.topics, id: \.self) {
-                            Text($0)
-                        }
+            case .p12:
+                Picker(selection: $appState.selectedTopic, content: {
+                    ForEach(appState.topics, id: \.self) {
+                        Text($0)
                     }
-                case .p8:
-                    TextField("Bundle id: ", text: $appState.selectedTopic, prompt: Text("com.qeude.Swush"))
-                        .textFieldStyle(.roundedBorder)
+                }, label: {})
+            case .p8:
+                TextField(text: $appState.selectedTopic, prompt: Text("com.qeude.Swush"), label: {})
+                    .textFieldStyle(.roundedBorder)
             }
         }
     }
     
-    private var commonForm: some View {
-        VStack {
-            TextField("Device push token: ", text: $appState.deviceToken, prompt: Text("Enter your device push token here..."))
-                .textFieldStyle(.roundedBorder)
-            Picker("Payload type: ", selection: $appState.selectedPayloadType) {
-                ForEach(APNS.PayloadType.allCases, id: \.self) {
-                    Text(APNS.PayloadType.from(value: $0))
-                }
-            }
-            Picker("Priority: ", selection: $appState.priority) {
-                ForEach(APNS.Priority.allCases, id: \.self) {
-                    Text("\($0.rawValue)")
-                }
-            }.pickerStyle(.segmented)
+    private var payloadForm: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Payload").font(.title).bold()
             TextEditor(text: $appState.payload)
                 .font(.system(.body, design: .monospaced))
+                .fixedSize(horizontal: false, vertical: true)
                 .cornerRadius(8)
-                .formLabel(Text("Payload: "), verticalAlignment: .top)
-            HStack {
-                Button {
-                    Task {
-                        try await appState.sendPush()
-                    }
-                } label: {
-                    Text("🚀 Send")
-                }.keyboardShortcut(.return, modifiers: [.command])
-            }
         }
     }
     
     private func setup() {
         switch appState.selectedCertificateType {
-            case .p12(let certificate): selectedIdentity = certificate
-            case .p8(let token): apnsToken = token
+        case .p12(let certificate):
+            selectedIdentity = certificate
+        case .p8(let tokenFilename, let teamId, let keyId):
+            apnsToken = tokenFilename
         }
     }
 }

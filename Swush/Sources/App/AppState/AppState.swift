@@ -67,12 +67,12 @@ class AppState: ObservableObject {
 
     private func didChangeCertificateType() {
         switch selectedCertificateType {
-            case .p8(let token): didChange(token: token)
+            case .p8(let tokenFilename, let teamId, let keyId): didChange(tokenFilename: tokenFilename, teamId: teamId, keyId: keyId)
             case .p12(let certificate): didChange(identity: certificate)
         }
     }
     
-    private func didChange(token: String?) {
+    private func didChange(tokenFilename: String, teamId: String, keyId: String) {
         selectedTopic = ""
     }
     

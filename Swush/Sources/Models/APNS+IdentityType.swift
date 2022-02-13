@@ -13,8 +13,8 @@ extension APNS {
         case production
 
         private static let mapping: [IdentityType: String] = [
-            .sandbox: "Sandbox",
-            .production: "Production",
+            .sandbox: "🏖 Sandbox",
+            .production: "🚨 Production",
         ]
 
         private static let slugMapping: [IdentityType: String] = [
