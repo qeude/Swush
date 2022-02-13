@@ -73,7 +73,8 @@ class AppState: ObservableObject {
     }
     
     private func didChange(tokenFilename: String, teamId: String, keyId: String) {
-        selectedTopic = ""
+        showCertificateTypePicker = true
+        selectedIdentityType = .production
     }
     
     private func didChange(identity: SecIdentity?) {

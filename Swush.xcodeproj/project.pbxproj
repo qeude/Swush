@@ -39,7 +39,6 @@
 		014D0C7727A1AECD00C43A74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014D0C7627A1AECD00C43A74 /* Assets.xcassets */; };
 		014D0C7A27A1AECD00C43A74 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014D0C7927A1AECD00C43A74 /* Preview Assets.xcassets */; };
 		014D0C8427A1BCEC00C43A74 /* SecIdentityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8327A1BCEC00C43A74 /* SecIdentityService.swift */; };
-		014D0C8827A1D3C800C43A74 /* View+FormLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */; };
 		014D0C9027A1E61600C43A74 /* APNSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8F27A1E61600C43A74 /* APNSService.swift */; };
 		0188035627B949D900823EE6 /* JWT in Frameworks */ = {isa = PBXBuildFile; productRef = 0188035527B949D900823EE6 /* JWT */; };
 		0188035927B953C900823EE6 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0188035827B953C900823EE6 /* Input.swift */; };
@@ -82,7 +81,6 @@
 		014D0C7927A1AECD00C43A74 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		014D0C7B27A1AECD00C43A74 /* Swush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Swush.entitlements; sourceTree = "<group>"; };
 		014D0C8327A1BCEC00C43A74 /* SecIdentityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecIdentityService.swift; sourceTree = "<group>"; };
-		014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+FormLabel.swift"; sourceTree = "<group>"; };
 		014D0C8F27A1E61600C43A74 /* APNSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSService.swift; sourceTree = "<group>"; };
 		015E27AE27B02F80002D50B4 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		0188035327B9422E00823EE6 /* JWT */ = {isa = PBXFileReference; lastKnownFileType = text; path = JWT; sourceTree = SOURCE_ROOT; };
@@ -260,7 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */,
-				014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */,
 				0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */,
 				0145B12627A5973000E0EC43 /* String+Extensions.swift */,
 				0145B12F27A5A95200E0EC43 /* SecIdentity+Extensions.swift */,
@@ -443,7 +440,6 @@
 				010E487727A69F1A00D950EF /* UpdaterViewModel.swift in Sources */,
 				0145B11E27A592E700E0EC43 /* URLResponse+Extensions.swift in Sources */,
 				012CEBFC27A7204400D76A5A /* Published+Extensions.swift in Sources */,
-				014D0C8827A1D3C800C43A74 /* View+FormLabel.swift in Sources */,
 				0145B12327A593A000E0EC43 /* DependencyProvider.swift in Sources */,
 				0194C7D827A5B55300FB943F /* AppDatabase.swift in Sources */,
 				014D0C8427A1BCEC00C43A74 /* SecIdentityService.swift in Sources */,

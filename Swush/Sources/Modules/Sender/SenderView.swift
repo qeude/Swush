@@ -13,7 +13,7 @@ struct SenderView: View {
     @EnvironmentObject private var appState: AppState
     
     @State private var selectedIdentity: SecIdentity? = nil
-    @State private var apnsToken: String = ""
+    @State private var apnsTokenFilename: String = ""
     @State private var teamId: String = ""
     @State private var keyId: String = ""
     @State private var selectedRawCertificateType: String = APNS.CertificateType.p12(certificate: nil).rawValue
@@ -30,13 +30,19 @@ struct SenderView: View {
             .onChange(of: selectedIdentity, perform: { newValue in
                 appState.selectedCertificateType = .p12(certificate: selectedIdentity)
             })
-            .onChange(of: apnsToken, perform: { newValue in
-                appState.selectedCertificateType = .p8(tokenFilename: apnsToken, teamId: "toto", keyId: "toto")
+            .onChange(of: apnsTokenFilename, perform: { newValue in
+                appState.selectedCertificateType = .p8(tokenFilename: apnsTokenFilename, teamId: teamId, keyId: keyId)
+            })
+            .onChange(of: teamId, perform: { newValue in
+                appState.selectedCertificateType = .p8(tokenFilename: apnsTokenFilename, teamId: teamId, keyId: keyId)
+            })
+            .onChange(of: keyId, perform: { newValue in
+                appState.selectedCertificateType = .p8(tokenFilename: apnsTokenFilename, teamId: teamId, keyId: keyId)
             })
             .onChange(of: selectedRawCertificateType, perform: { newValue in
                 switch newValue {
                 case "p12": appState.selectedCertificateType = .p12(certificate: selectedIdentity)
-                case "p8":  appState.selectedCertificateType =  .p8(tokenFilename: apnsToken, teamId: "toto", keyId: "toto")
+                case "p8":  appState.selectedCertificateType =  .p8(tokenFilename: apnsTokenFilename, teamId: teamId, keyId: keyId)
                 default: fatalError()
                 }
             })
@@ -84,7 +90,7 @@ struct SenderView: View {
     private var keyAuthenticationForm: some View {
         Group {
             Input(label: "Key filename") {
-                TextField(text: $apnsToken, prompt: Text("Paste the path to your .p8 file here ..."), label: {})
+                TextField(text: $apnsTokenFilename, prompt: Text("Paste the path to your .p8 file here ..."), label: {})
                     .textFieldStyle(.roundedBorder)
             }
             Input(label: "Team id") {
@@ -105,7 +111,7 @@ struct SenderView: View {
                 TextField(text: $appState.deviceToken, prompt: Text("Enter your device push token here..."), label: {})
                     .textFieldStyle(.roundedBorder)
             }
-            if selectedIdentity != nil, appState.showCertificateTypePicker {
+            if appState.showCertificateTypePicker {
                 Input(label: "Environment") {
                     Picker(
                         selection: $appState.selectedIdentityType,
@@ -173,11 +179,14 @@ struct SenderView: View {
     }
     
     private func setup() {
+        selectedRawCertificateType = appState.selectedCertificateType.rawValue
         switch appState.selectedCertificateType {
         case .p12(let certificate):
             selectedIdentity = certificate
         case .p8(let tokenFilename, let teamId, let keyId):
-            apnsToken = tokenFilename
+            self.apnsTokenFilename = tokenFilename
+            self.teamId = teamId
+            self.keyId = keyId
         }
     }
 }

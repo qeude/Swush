@@ -16,7 +16,12 @@ class APNSService: NSObject {
             self.identity = identity
         }
        
-        session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
+        switch apns.certificateType {
+        case .p12:
+            session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
+        case .p8:
+            session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)
+        }
         guard let session = session else { return }
 
         var request = URLRequest(
@@ -27,13 +32,16 @@ class APNSService: NSObject {
         request.httpMethod = "POST"
         request.httpBody = try JSONSerialization.data(withJSONObject: apns.payload!)
 
+        if case .p8 = apns.certificateType {
+            request.addValue("bearer \(apns.jwt)", forHTTPHeaderField: "authorization")
+        }
         request.addValue(apns.topic, forHTTPHeaderField: "apns-topic")
         request.addValue(String(apns.priority.rawValue), forHTTPHeaderField: "apns-priority")
         request.addValue(apns.payloadType.rawValue, forHTTPHeaderField: "apns-push-type")
 
         let (_, response) = try await session.data(for: request)
         guard let _ = response.status else { fatalError() }
-        print(response)
+        //TODO: Should handle errors here
     }
 }
 
