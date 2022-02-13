@@ -22,7 +22,7 @@ struct SenderView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 32) {
+            VStack(alignment: .leading, spacing: 38) {
                 authenticationForm
                 if !appState.selectedCertificateType.isEmptyOrNil {
                     configForm
@@ -79,7 +79,7 @@ struct SenderView: View {
     }
     
     private var certificateAuthenticationForm: some View {
-        Input(label: "Certificate") {
+        Input(label: "Certificate", help: "Certificates are retrieved from your Keychain. \n\nYou need to retrieve it from [Certificates, Identifiers & Profiles → Certificates](https://developer.apple.com/account/resources/certificates/list) and add it to your Keychain by double-clicking on it.") {
             Picker(selection: $selectedIdentity, content: {
                 Text("Select a push certificate...").tag(nil as SecIdentity?)
                 ForEach(DependencyProvider.secIdentityService.identities ?? [], id: \.self) {
@@ -91,7 +91,7 @@ struct SenderView: View {
     
     private var keyAuthenticationForm: some View {
         Group {
-            Input(label: "Key file") {
+            Input(label: "Key file", help: "The `.p8` file corresponding to your key. \n\nAvailable at [Certificates, Identifiers & Profiles → Keys](https://developer.apple.com/account/resources/authkeys/list).") {
                 HStack {
                     Button {
                         let filePath = showOpenPanel()
@@ -102,11 +102,11 @@ struct SenderView: View {
                     Text(self.apnsTokenFilename.split(separator: "/").last ?? "")
                 }
             }
-            Input(label: "Team id") {
+            Input(label: "Team id", help: "The Team ID of your Apple Developer Account. \n\nAvailable at [Membership](https://developer.apple.com/account/#!/membership/).") {
                 TextField(text: $teamId, prompt: Text("Paste your team id here ..."), label: {})
                     .textFieldStyle(.roundedBorder)
             }
-            Input(label: "Key id") {
+            Input(label: "Key id", help: "The key id associated to the selected `.p8` file. \n\nAvailable at [Certificates, Identifiers & Profiles → Keys](https://developer.apple.com/account/resources/authkeys/list).") {
                 TextField(text: $keyId, prompt: Text("Paste your key id here ..."), label: {})
                     .textFieldStyle(.roundedBorder)
             }
@@ -126,12 +126,12 @@ struct SenderView: View {
     private var configForm: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Configuration").font(.title).bold()
-            Input(label: "Device push token") {
+            Input(label: "Device push token", help: "The device token for the user's device. \nYour app receives this device token when registering for remote notifications.") {
                 TextField(text: $appState.deviceToken, prompt: Text("Enter your device push token here..."), label: {})
                     .textFieldStyle(.roundedBorder)
             }
             if appState.showCertificateTypePicker {
-                Input(label: "Environment") {
+                Input(label: "Environment", help: "APNs server to use to send your notification. \n- **sandbox**: for apps signed with iOS Development Certificate, mostly apps in debug mode. \n- **production**: for apps signed with iOS Distribution Certificate, mostly apps in release mode.") {
                     Picker(
                         selection: $appState.selectedIdentityType,
                         content: {
@@ -144,7 +144,7 @@ struct SenderView: View {
                         .fixedSize()
                 }
             }
-            Input(label: "Push type") {
+            Input(label: "Push type", help: "The value of this header must accurately reflect the contents of your notification's payload. \nThe apns-push-type header field has six valid values: \n- **alert**: Use the alert push type for notifications that trigger a user interaction--for example, an alert, badge, or sound \n- **background**: Use the background push type for notifications that deliver content in the background, and don't trigger any user interactions. \n- **voip**: Use the voip push type for notifications that provide information about an incoming Voice-over-IP (VolP) call. \n- **complication**: Use the complication push type for notifications that contain update information for a watchOS app's complications \n- **fileprovider**: Use the fileprovider push type to signal changes to a File Provider extension \n- **mdm**: Use the mdm push type for notifications that tell managed devices to contact the MDM server") {
                 Picker(
                     selection: $appState.selectedPayloadType,
                     content: {
@@ -154,7 +154,7 @@ struct SenderView: View {
                     },
                     label: {})
             }
-            Input(label: "Priority") {
+            Input(label: "Priority", help: "The priority of the notification.\n- Specify 10 to send the notification immediately.\n- Specify 5 to send the notification based on power considerations on the user's device.\n\nFor background notifications, using \"⚡️Immediately\" is an error.") {
                 Picker(
                     selection: $appState.priority,
                     content: {
@@ -172,7 +172,7 @@ struct SenderView: View {
     }
     
     private var topicForm: some View {
-        Input(label: "Bundle id") {
+        Input(label: "Bundle id", help: "The topic for the notification. \nMost of the time, the topic is your app's bundle ID/app ID. It can have a suffix based on the type of push notification. \nIf you are using a certificate that supports Pushkit VolP or watchOS complication notifications, you must include this header with bundle ID of you app and if applicable, the proper suffix. \nIf you are using token-based authentication with APNs, you must include this header with the correct bundle ID and suffix combination") {
             switch appState.selectedCertificateType {
             case .p12:
                 Picker(selection: $appState.selectedTopic, content: {
