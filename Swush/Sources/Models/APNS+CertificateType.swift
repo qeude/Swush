@@ -2,32 +2,39 @@
 //  APNS+CertificateType.swift
 //  Swush
 //
-//  Created by Quentin Eude on 29/01/2022.
+//  Created by Quentin Eude on 08/02/2022.
 //
 
 import Foundation
 
 extension APNS {
-    enum CertificateType: CaseIterable {
-        case sandbox
-        case production
-
-        private static let mapping: [CertificateType: String] = [
-            .sandbox: "Sandbox",
-            .production: "Production",
-        ]
-
-        private static let slugMapping: [CertificateType: String] = [
-            .sandbox: "sandbox",
-            .production: "production",
-        ]
-
-        var slug: String {
-            CertificateType.slugMapping[self] ?? ""
+    enum CertificateType: CaseIterable, Hashable {
+        case p12(certificate: SecIdentity?)
+        case p8(tokenFilename: String, teamId: String, keyId: String)
+        
+        static var allCases: [APNS.CertificateType] = [.p12(certificate: nil), .p8(tokenFilename: "", teamId: "", keyId: "")]
+        static var allRawCases: [String] = allCases.map { $0.rawValue }
+        
+        var isEmptyOrNil: Bool {
+            switch self {
+            case .p12(let certificate): return certificate == nil
+            case .p8(let tokenFilename, let teamId, let keyId): return tokenFilename.isEmpty || teamId.isEmpty || keyId.isEmpty
+            }
+        }
+        
+        var rawValue: String {
+            switch self {
+                case .p12: return "p12"
+                case .p8: return "p8"
+            }
         }
 
-        static func from(value: CertificateType) -> String {
-            mapping[value] ?? "Unknown"
+        static func placeholder(for rawValue: String) -> String {
+            switch rawValue {
+                case "p12" : return "🎫 Certificate"
+                case "p8": return "🔑 Key"
+                default: return ""
+            }
         }
     }
 }

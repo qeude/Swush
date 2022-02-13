@@ -7,6 +7,7 @@
 A macOS app to push notifications to APNS with ease. ⚡
 
 - 💾 Persisted push for easy replay.
+- 🔑 Handle both `.p12` certificates and `.p8` tokens.
 - 🎟️ Automatically retrieve APNS certificates from your keychain.
 - ❤️ Made using SwiftUI.
 
@@ -22,4 +23,5 @@ Swush is licensed under [The MIT Licence (MIT)](LICENSE).
 
 - Quentin Eude
   - [Github](https://github.com/qeude)
+  - [Twitter](https://twitter.com/q_eude)
   - [LinkedIn](https://www.linkedin.com/in/quentineude/)

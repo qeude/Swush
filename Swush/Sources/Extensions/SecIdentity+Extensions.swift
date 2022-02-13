@@ -84,6 +84,6 @@ extension SecIdentity {
             formatter.timeStyle = .short
             dateString = formatter.string(from: expiryDate)
         }
-        return "🎟 \(name ?? "") (\(SecIdentityType.formattedString(for: type))) - 🚮 \(dateString)"
+        return "🎫 \(name ?? "") (\(SecIdentityType.formattedString(for: type))) - 🚮 \(dateString)"
     }
 }

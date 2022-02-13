@@ -22,6 +22,7 @@
 		012CEBFF27A7221900D76A5A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CEBFE27A7221900D76A5A /* SettingsView.swift */; };
 		012CEC0127A7225000D76A5A /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CEC0027A7225000D76A5A /* GeneralSettingsView.swift */; };
 		012D75CD27A984CC00A55457 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D75CC27A984CC00A55457 /* AppState.swift */; };
+		013F50A627B2F9BC002B7970 /* APNS+CertificateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F50A527B2F9BC002B7970 /* APNS+CertificateType.swift */; };
 		0145B11B27A592B800E0EC43 /* APNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11A27A592B800E0EC43 /* APNS.swift */; };
 		0145B11E27A592E700E0EC43 /* URLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */; };
 		0145B12027A5930800E0EC43 /* APNS+PayloadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B11F27A5930800E0EC43 /* APNS+PayloadType.swift */; };
@@ -29,7 +30,7 @@
 		0145B12527A5950400E0EC43 /* SecIdentityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12427A5950400E0EC43 /* SecIdentityType.swift */; };
 		0145B12727A5973000E0EC43 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12627A5973000E0EC43 /* String+Extensions.swift */; };
 		0145B12927A5975200E0EC43 /* SenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12827A5975200E0EC43 /* SenderView.swift */; };
-		0145B12C27A5984D00E0EC43 /* APNS+CertificateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12B27A5984D00E0EC43 /* APNS+CertificateType.swift */; };
+		0145B12C27A5984D00E0EC43 /* APNS+IdentityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12B27A5984D00E0EC43 /* APNS+IdentityType.swift */; };
 		0145B12E27A59A3D00E0EC43 /* APNS+Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12D27A59A3D00E0EC43 /* APNS+Priority.swift */; };
 		0145B13027A5A95200E0EC43 /* SecIdentity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145B12F27A5A95200E0EC43 /* SecIdentity+Extensions.swift */; };
 		0145B13327A5B12300E0EC43 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 0145B13227A5B12300E0EC43 /* GRDB */; };
@@ -38,8 +39,9 @@
 		014D0C7727A1AECD00C43A74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014D0C7627A1AECD00C43A74 /* Assets.xcassets */; };
 		014D0C7A27A1AECD00C43A74 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014D0C7927A1AECD00C43A74 /* Preview Assets.xcassets */; };
 		014D0C8427A1BCEC00C43A74 /* SecIdentityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8327A1BCEC00C43A74 /* SecIdentityService.swift */; };
-		014D0C8827A1D3C800C43A74 /* View+FormLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */; };
 		014D0C9027A1E61600C43A74 /* APNSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D0C8F27A1E61600C43A74 /* APNSService.swift */; };
+		0188035627B949D900823EE6 /* JWT in Frameworks */ = {isa = PBXBuildFile; productRef = 0188035527B949D900823EE6 /* JWT */; };
+		0188035927B953C900823EE6 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0188035827B953C900823EE6 /* Input.swift */; };
 		0194C7D827A5B55300FB943F /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194C7D727A5B55300FB943F /* AppDatabase.swift */; };
 		01C8269B27A87C450043E890 /* NSTextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */; };
 		01C8269E27A87FD70043E890 /* CreateApnsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C8269D27A87FD70043E890 /* CreateApnsView.swift */; };
@@ -61,6 +63,7 @@
 		012CEBFE27A7221900D76A5A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		012CEC0027A7225000D76A5A /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		012D75CC27A984CC00A55457 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		013F50A527B2F9BC002B7970 /* APNS+CertificateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+CertificateType.swift"; sourceTree = "<group>"; };
 		0145B11A27A592B800E0EC43 /* APNS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNS.swift; sourceTree = "<group>"; };
 		0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		0145B11F27A5930800E0EC43 /* APNS+PayloadType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+PayloadType.swift"; sourceTree = "<group>"; };
@@ -68,7 +71,7 @@
 		0145B12427A5950400E0EC43 /* SecIdentityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecIdentityType.swift; sourceTree = "<group>"; };
 		0145B12627A5973000E0EC43 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		0145B12827A5975200E0EC43 /* SenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderView.swift; sourceTree = "<group>"; };
-		0145B12B27A5984D00E0EC43 /* APNS+CertificateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+CertificateType.swift"; sourceTree = "<group>"; };
+		0145B12B27A5984D00E0EC43 /* APNS+IdentityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+IdentityType.swift"; sourceTree = "<group>"; };
 		0145B12D27A59A3D00E0EC43 /* APNS+Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNS+Priority.swift"; sourceTree = "<group>"; };
 		0145B12F27A5A95200E0EC43 /* SecIdentity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SecIdentity+Extensions.swift"; sourceTree = "<group>"; };
 		014D0C6F27A1AECC00C43A74 /* Swush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swush.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,9 +81,10 @@
 		014D0C7927A1AECD00C43A74 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		014D0C7B27A1AECD00C43A74 /* Swush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Swush.entitlements; sourceTree = "<group>"; };
 		014D0C8327A1BCEC00C43A74 /* SecIdentityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecIdentityService.swift; sourceTree = "<group>"; };
-		014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+FormLabel.swift"; sourceTree = "<group>"; };
 		014D0C8F27A1E61600C43A74 /* APNSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSService.swift; sourceTree = "<group>"; };
 		015E27AE27B02F80002D50B4 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		0188035327B9422E00823EE6 /* JWT */ = {isa = PBXFileReference; lastKnownFileType = text; path = JWT; sourceTree = SOURCE_ROOT; };
+		0188035827B953C900823EE6 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		0194C7D727A5B55300FB943F /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
 		01C8269727A8798D0043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
 		01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0188035627B949D900823EE6 /* JWT in Frameworks */,
 				010E487427A69EC400D950EF /* Sparkle in Frameworks */,
 				010E486C27A5BC7500D950EF /* GRDBQuery in Frameworks */,
 				0145B13327A5B12300E0EC43 /* GRDB in Frameworks */,
@@ -157,7 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				0145B11A27A592B800E0EC43 /* APNS.swift */,
-				0145B12B27A5984D00E0EC43 /* APNS+CertificateType.swift */,
+				013F50A527B2F9BC002B7970 /* APNS+CertificateType.swift */,
+				0145B12B27A5984D00E0EC43 /* APNS+IdentityType.swift */,
 				0145B11F27A5930800E0EC43 /* APNS+PayloadType.swift */,
 				0145B12D27A59A3D00E0EC43 /* APNS+Priority.swift */,
 				0145B12427A5950400E0EC43 /* SecIdentityType.swift */,
@@ -176,10 +182,12 @@
 		014D0C6627A1AECC00C43A74 = {
 			isa = PBXGroup;
 			children = (
+				0188035227B9421100823EE6 /* Packages */,
 				015E27AD27B02F5F002D50B4 /* BuildTools */,
 				014D0C7127A1AECC00C43A74 /* Swush */,
 				014D0C7027A1AECC00C43A74 /* Products */,
 				01C8269927A87A020043E890 /* Recovered References */,
+				0188035427B949D900823EE6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,6 +222,7 @@
 		014D0C8927A1D82B00C43A74 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				0188035727B953AD00823EE6 /* Components */,
 				0194C7D627A5B4EA00FB943F /* Database */,
 				0145B11927A592A900E0EC43 /* Models */,
 				014D0C8E27A1E5CF00C43A74 /* Services */,
@@ -249,7 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */,
-				014D0C8727A1D3C800C43A74 /* View+FormLabel.swift */,
 				0145B11D27A592E700E0EC43 /* URLResponse+Extensions.swift */,
 				0145B12627A5973000E0EC43 /* String+Extensions.swift */,
 				0145B12F27A5A95200E0EC43 /* SecIdentity+Extensions.swift */,
@@ -275,6 +283,29 @@
 				015E27AE27B02F80002D50B4 /* Package.swift */,
 			);
 			path = BuildTools;
+			sourceTree = "<group>";
+		};
+		0188035227B9421100823EE6 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				0188035327B9422E00823EE6 /* JWT */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		0188035427B949D900823EE6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0188035727B953AD00823EE6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0188035827B953C900823EE6 /* Input.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		0194C7D627A5B4EA00FB943F /* Database */ = {
@@ -315,6 +346,7 @@
 				0145B13227A5B12300E0EC43 /* GRDB */,
 				010E486B27A5BC7500D950EF /* GRDBQuery */,
 				010E487327A69EC400D950EF /* Sparkle */,
+				0188035527B949D900823EE6 /* JWT */,
 			);
 			productName = Swush;
 			productReference = 014D0C6F27A1AECC00C43A74 /* Swush.app */;
@@ -387,7 +419,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd BuildTools\nSDKROOT=(xcrun --sdk macosx --show-sdk-path)\n#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file\nswift run -c release swiftformat --lint \"$SRCROOT\"\n";
+			shellScript = "#cd BuildTools\n#SDKROOT=(xcrun --sdk macosx --show-sdk-path)\n#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file\n#swift run -c release swiftformat --lint \"$SRCROOT\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -396,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0188035927B953C900823EE6 /* Input.swift in Sources */,
 				0145B12927A5975200E0EC43 /* SenderView.swift in Sources */,
 				012CEBFF27A7221900D76A5A /* SettingsView.swift in Sources */,
 				01F8C2E627B04B8300B37588 /* View+ConditionalModifier.swift in Sources */,
@@ -407,7 +440,6 @@
 				010E487727A69F1A00D950EF /* UpdaterViewModel.swift in Sources */,
 				0145B11E27A592E700E0EC43 /* URLResponse+Extensions.swift in Sources */,
 				012CEBFC27A7204400D76A5A /* Published+Extensions.swift in Sources */,
-				014D0C8827A1D3C800C43A74 /* View+FormLabel.swift in Sources */,
 				0145B12327A593A000E0EC43 /* DependencyProvider.swift in Sources */,
 				0194C7D827A5B55300FB943F /* AppDatabase.swift in Sources */,
 				014D0C8427A1BCEC00C43A74 /* SecIdentityService.swift in Sources */,
@@ -419,10 +451,11 @@
 				012CEC0127A7225000D76A5A /* GeneralSettingsView.swift in Sources */,
 				0145B12E27A59A3D00E0EC43 /* APNS+Priority.swift in Sources */,
 				014D0C9027A1E61600C43A74 /* APNSService.swift in Sources */,
+				013F50A627B2F9BC002B7970 /* APNS+CertificateType.swift in Sources */,
 				0101AD0227B03FFC0010E212 /* AppState+SendPush.swift in Sources */,
 				014D0C7527A1AECC00C43A74 /* ContentView.swift in Sources */,
 				014D0C7327A1AECC00C43A74 /* SwushApp.swift in Sources */,
-				0145B12C27A5984D00E0EC43 /* APNS+CertificateType.swift in Sources */,
+				0145B12C27A5984D00E0EC43 /* APNS+IdentityType.swift in Sources */,
 				0145B12027A5930800E0EC43 /* APNS+PayloadType.swift in Sources */,
 				0101ACFC27B03EE50010E212 /* AppState+Renaming.swift in Sources */,
 				0145B11B27A592B800E0EC43 /* APNS.swift in Sources */,
@@ -675,6 +708,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0145B13127A5B12300E0EC43 /* XCRemoteSwiftPackageReference "GRDB" */;
 			productName = GRDB;
+		};
+		0188035527B949D900823EE6 /* JWT */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = JWT;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -9,14 +9,27 @@ import Foundation
 
 extension AppState {
     func sendPush() async throws {
-        guard let _ = payload.toJSON(), let identity = selectedIdentity else { return }
+        guard let _ = payload.toJSON(), !selectedCertificateType.isEmptyOrNil else { return }
         let apns = APNS(
-            name: name, creationDate: selectedApns?.creationDate ?? Date(),
+            name: name,
+            creationDate: selectedApns?.creationDate ?? Date(),
             updateDate: selectedApns?.updateDate ?? Date(),
-            identityString: identity.humanReadable, rawPayload: payload, token: token,
-            topic: selectedTopic, payloadType: selectedPayloadType, priority: priority,
-            isSandbox: selectedCertificateType == .sandbox
+            certificateType: selectedCertificateType,
+            rawPayload: payload,
+            deviceToken: deviceToken,
+            topic: selectedTopic,
+            payloadType: selectedPayloadType,
+            priority: priority,
+            isSandbox: selectedIdentityType == .sandbox
         )
         try await DependencyProvider.apnsService.sendPush(for: apns)
+    }
+    
+    private func sendPushWithApnsToken() {
+        
+    }
+    
+    private func sendPushWithApnsCertificate() {
+        
     }
 }

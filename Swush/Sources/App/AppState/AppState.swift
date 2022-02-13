@@ -10,6 +10,10 @@ import SwiftUI
 
 @MainActor
 class AppState: ObservableObject {
+    enum CertificateType {
+        case p12, p8
+    }
+    
     // MARK: Sidebar
 
     @Published var showDeleteAlert: Bool = false
@@ -31,17 +35,15 @@ class AppState: ObservableObject {
 
     // MARK: APNS form
 
-    @Published var selectedIdentity: SecIdentity? = nil {
+    @Published var selectedCertificateType: APNS.CertificateType = .p12(certificate: nil) {
         didSet {
-            if oldValue != selectedIdentity {
-                didChooseIdentity()
-            }
+            didChangeCertificateType()
         }
     }
 
     @Published var name: String = ""
-    @Published var selectedCertificateType: APNS.CertificateType = .sandbox
-    @Published var token = ""
+    @Published var selectedIdentityType: APNS.IdentityType = .sandbox
+    @Published var deviceToken = ""
     @Published var payload =
         "{\n\t\"aps\": {\n\t\t\"alert\": \"Push test!\",\n\t\t\"sound\": \"default\",\n\t}\n}"
     @Published var topics: [String] = []
@@ -50,36 +52,51 @@ class AppState: ObservableObject {
     @Published var showCertificateTypePicker: Bool = false
     @Published var selectedPayloadType: APNS.PayloadType = .alert
 
+    var canSendApns: Bool {
+        return !deviceToken.isEmpty && !payload.isEmpty && !selectedTopic.isEmpty && !selectedCertificateType.isEmptyOrNil
+    }
+    
     private func setApns(_ apns: APNS) {
-        selectedIdentity = apns.identity
-        selectedCertificateType = apns.isSandbox ? .sandbox : .production
-        token = apns.token
+        selectedCertificateType = apns.certificateType
+        selectedIdentityType = apns.isSandbox ? .sandbox : .production
+        deviceToken = apns.deviceToken
         payload = apns.rawPayload
-        topics = apns.identity?.topics ?? []
+        topics = apns.topics 
         priority = apns.priority
         selectedTopic = apns.topic
         selectedPayloadType = apns.payloadType
         name = apns.name
-        didChooseIdentity()
+        didChangeCertificateType()
     }
 
-    private func didChooseIdentity() {
-        guard let selectedIdentity = selectedIdentity else {
+    private func didChangeCertificateType() {
+        switch selectedCertificateType {
+            case .p8(let tokenFilename, let teamId, let keyId): didChange(tokenFilename: tokenFilename, teamId: teamId, keyId: keyId)
+            case .p12(let certificate): didChange(identity: certificate)
+        }
+    }
+    
+    private func didChange(tokenFilename: String, teamId: String, keyId: String) {
+        showCertificateTypePicker = true
+        selectedIdentityType = .production
+    }
+    
+    private func didChange(identity: SecIdentity?) {
+        guard let identity = identity else {
             topics = []
-            selectedTopic = ""
             return
         }
-        let type = selectedIdentity.type
+        let type = identity.type
         switch type {
         case .universal:
             showCertificateTypePicker = true
         case .production:
-            selectedCertificateType = .production
+            selectedIdentityType = .production
         default:
             break
         }
 
-        topics = selectedIdentity.topics
+        topics = identity.topics
         selectedTopic = topics.first ?? ""
     }
 

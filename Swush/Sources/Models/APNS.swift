@@ -10,25 +10,89 @@ import Foundation
 import GRDB
 import GRDBQuery
 import Security
+import JWT
 
 struct APNS: Identifiable, Hashable {
     var id: Int64?
     var name: String
     let creationDate: Date
     let updateDate: Date
-    let identityString: String
+    let rawCertificateType: String
+    let identityString: String?
+    let apnsTokenFilename: String?
+    let teamId: String?
+    let keyId: String?
     let rawPayload: String
-    let token: String
+    let deviceToken: String
     let topic: String
     let payloadType: PayloadType
     let priority: Priority
     let isSandbox: Bool
-
+    
+    init(id: Int64? = nil,
+         name: String,
+         creationDate: Date,
+         updateDate: Date,
+         certificateType: APNS.CertificateType,
+         rawPayload: String,
+         deviceToken: String,
+         topic: String,
+         payloadType: PayloadType,
+         priority: Priority,
+         isSandbox: Bool
+    ) {
+        self.id = id
+        self.name = name
+        self.creationDate = creationDate
+        self.updateDate = updateDate
+        self.rawCertificateType = certificateType.rawValue
+        switch certificateType {
+        case .p8(let tokenFilename, let teamId, let keyId):
+            self.identityString = nil
+            self.apnsTokenFilename = tokenFilename
+            self.teamId = teamId
+            self.keyId = keyId
+        case .p12(let certificate):
+            self.identityString = certificate?.humanReadable
+            self.apnsTokenFilename = nil
+            self.teamId = nil
+            self.keyId = nil
+        }
+        self.rawPayload = rawPayload
+        self.deviceToken = deviceToken
+        self.topic = topic
+        self.payloadType = payloadType
+        self.priority = priority
+        self.isSandbox = isSandbox
+    }
+    
+    var certificateType: CertificateType {
+        switch rawCertificateType {
+            case "p12": return .p12(certificate: identity)
+            case "p8": return .p8(tokenFilename: apnsTokenFilename ?? "", teamId: teamId ?? "", keyId: keyId ?? "")
+            default:
+                fatalError("Unknown certificate type")
+        }
+    }
+    
     var payload: [String: Any]? {
         rawPayload.toJSON()
     }
+    
+    var topics: [String] {
+        if case .p12(.some(_)) = certificateType {
+            return identity?.topics ?? []
+        }
+        return []
+    }
+    
+    var jwt: String {
+        guard let teamId = teamId, let keyId = keyId, let tokenFilename = apnsTokenFilename else { fatalError() }
+        let jwt = JWT(teamId: teamId, topic: topic, keyId: keyId, tokenFilename: tokenFilename)
+        return jwt.token
+    }
 
-    var identity: SecIdentity? {
+    private var identity: SecIdentity? {
         DependencyProvider.secIdentityService.identities?.first(where: {
             $0.humanReadable == identityString
         })
@@ -38,10 +102,10 @@ struct APNS: Identifiable, Hashable {
         name: "Untitled",
         creationDate: Date(),
         updateDate: Date(),
-        identityString: "",
+        certificateType: .p12(certificate: nil),
         rawPayload:
         "{\n\t\"aps\": {\n\t\t\"alert\": \"Push test!\",\n\t\t\"sound\": \"default\",\n\t}\n}",
-        token: "",
+        deviceToken: "",
         topic: "",
         payloadType: .alert,
         priority: .high,
@@ -55,9 +119,13 @@ extension APNS: Codable, FetchableRecord, MutablePersistableRecord {
         static let name = Column(CodingKeys.name)
         static let creationDate = Column(CodingKeys.creationDate)
         static let updateDate = Column(CodingKeys.updateDate)
+        static let rawCertificateType = Column(CodingKeys.rawCertificateType)
         static let identityString = Column(CodingKeys.identityString)
+        static let apnsTokenFilename = Column(CodingKeys.apnsTokenFilename)
+        static let teamId = Column(CodingKeys.teamId)
+        static let keyId = Column(CodingKeys.keyId)
         static let rawPayload = Column(CodingKeys.rawPayload)
-        static let token = Column(CodingKeys.token)
+        static let deviceToken = Column(CodingKeys.deviceToken)
         static let topic = Column(CodingKeys.topic)
         static let payloadType = Column(CodingKeys.payloadType)
         static let priority = Column(CodingKeys.priority)

@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ApnsListView()
-            Text("Create your first APNS to start using the app. 🚀")
+            Text("Create your first APNs to start using the app. 🚀")
         }
         .toolbar {
             ToolbarItem(placement: .navigation) {
@@ -33,6 +33,17 @@ struct ContentView: View {
                 } label: {
                     Image(systemName: "plus")
                 }
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                Button {
+                    Task {
+                        try await appState.sendPush()
+                    }
+                } label: {
+                    Image(systemName: "paperplane")
+                }
+                .keyboardShortcut(.return, modifiers: [.command])
+                .disabled(!appState.canSendApns)
             }
         }
     }

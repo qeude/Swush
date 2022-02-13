@@ -26,13 +26,13 @@ extension AppState {
                 name: selectedApns?.name ?? "",
                 creationDate: selectedApns?.creationDate ?? Date(),
                 updateDate: Date(),
-                identityString: selectedIdentity?.humanReadable ?? "",
+                certificateType: selectedCertificateType,
                 rawPayload: payload,
-                token: token,
+                deviceToken: deviceToken,
                 topic: selectedTopic,
                 payloadType: selectedPayloadType,
                 priority: priority,
-                isSandbox: selectedCertificateType == .sandbox
+                isSandbox: selectedIdentityType == .sandbox
             )
             try await AppDatabase.shared.saveAPNS(&apns)
         } catch {

@@ -12,26 +12,36 @@ class APNSService: NSObject {
     private var identity: SecIdentity?
 
     func sendPush(for apns: APNS) async throws {
-        identity = apns.identity
-        session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
+        if case .p12(let identity) = apns.certificateType {
+            self.identity = identity
+        }
+       
+        switch apns.certificateType {
+        case .p12:
+            session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
+        case .p8:
+            session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)
+        }
         guard let session = session else { return }
 
         var request = URLRequest(
             url: URL(
                 string:
-                "https://api.\(apns.isSandbox ? "development." : "")push.apple.com/3/device/\(apns.token)"
+                "https://api.\(apns.isSandbox ? "development." : "")push.apple.com/3/device/\(apns.deviceToken)"
             )!)
         request.httpMethod = "POST"
-        request.httpBody = try JSONSerialization.data(withJSONObject: apns.payload)
+        request.httpBody = try JSONSerialization.data(withJSONObject: apns.payload!)
 
+        if case .p8 = apns.certificateType {
+            request.addValue("bearer \(apns.jwt)", forHTTPHeaderField: "authorization")
+        }
         request.addValue(apns.topic, forHTTPHeaderField: "apns-topic")
         request.addValue(String(apns.priority.rawValue), forHTTPHeaderField: "apns-priority")
         request.addValue(apns.payloadType.rawValue, forHTTPHeaderField: "apns-push-type")
 
-        let (data, response) = try await session.data(for: request)
-        guard let statusCode = response.status else { fatalError() }
-        print(statusCode)
-        print(response)
+        let (_, response) = try await session.data(for: request)
+        guard let _ = response.status else { fatalError() }
+        //TODO: Should handle errors here
     }
 }
 
@@ -39,10 +49,11 @@ extension APNSService: URLSessionDelegate {
     func urlSession(_: URLSession, didReceive _: URLAuthenticationChallenge) async
         -> (URLSession.AuthChallengeDisposition, URLCredential?)
     {
+        guard let identity = identity else { return (URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)}
         var certificate: SecCertificate?
-        SecIdentityCopyCertificate(identity!, &certificate)
+        SecIdentityCopyCertificate(identity, &certificate)
         let cred = URLCredential(
-            identity: identity!, certificates: [certificate!], persistence: .forSession
+            identity: identity, certificates: [certificate!], persistence: .forSession
         )
         return (URLSession.AuthChallengeDisposition.useCredential, cred)
     }
