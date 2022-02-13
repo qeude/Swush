@@ -17,7 +17,7 @@ struct DeleteApnsView: View {
                 appState.showDeleteAlert(for: apns)
             }
         } label: {
-            Text("Delete APNS")
+            Text("Delete APNs")
         }
         .keyboardShortcut(.delete, modifiers: [.command])
         .disabled(appState.selectedApns == nil)

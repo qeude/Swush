@@ -16,7 +16,7 @@ struct SaveApnsView: View {
                 await appState.save()
             }
         } label: {
-            Text("Save APNS")
+            Text("Save APNs")
         }
         .keyboardShortcut("s", modifiers: [.command])
         .disabled(appState.selectedApns == nil)

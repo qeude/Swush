@@ -16,7 +16,7 @@ struct CreateApnsView: View {
                 await appState.create()
             }
         } label: {
-            Text("New APNS")
+            Text("New APNs")
         }
         .keyboardShortcut("n", modifiers: [.command])
         .disabled(!appState.canCreateNewApns)
