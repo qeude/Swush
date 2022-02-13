@@ -37,7 +37,7 @@ struct ContentView: View {
             ToolbarItem(placement: .confirmationAction) {
                 Button {
                     Task {
-                        try await appState.sendPush()
+                        await appState.sendPush()
                     }
                 } label: {
                     Image(systemName: "paperplane")

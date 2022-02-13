@@ -8,8 +8,12 @@
 import Foundation
 
 extension AppState {
-    func sendPush() async throws {
-        guard let _ = payload.toJSON(), !selectedCertificateType.isEmptyOrNil else { return }
+    func sendPush() async {
+        guard let _ = payload.toJSON() else {
+            errorMessage = "Please provide a valid JSON payload."
+            showErrorMessage = true
+            return
+        }
         let apns = APNS(
             name: name,
             creationDate: selectedApns?.creationDate ?? Date(),
@@ -22,7 +26,16 @@ extension AppState {
             priority: priority,
             isSandbox: selectedIdentityType == .sandbox
         )
-        try await DependencyProvider.apnsService.sendPush(for: apns)
+        do {
+            try await DependencyProvider.apnsService.sendPush(for: apns)
+        } catch let error as APNSService.APIError {
+            print(error)
+            errorMessage = error.description
+            showErrorMessage = true
+        } catch {
+            print(error)
+        }
+        
     }
     
     private func sendPushWithApnsToken() {

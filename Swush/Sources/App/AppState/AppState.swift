@@ -51,6 +51,8 @@ class AppState: ObservableObject {
     @Published var selectedTopic: String = ""
     @Published var showCertificateTypePicker: Bool = false
     @Published var selectedPayloadType: APNS.PayloadType = .alert
+    @Published var showErrorMessage: Bool = false
+    @Published var errorMessage: String = ""
 
     var canSendApns: Bool {
         return !deviceToken.isEmpty && !payload.isEmpty && !selectedTopic.isEmpty && !selectedCertificateType.isEmptyOrNil

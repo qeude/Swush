@@ -39,9 +39,17 @@ class APNSService: NSObject {
         request.addValue(String(apns.priority.rawValue), forHTTPHeaderField: "apns-priority")
         request.addValue(apns.payloadType.rawValue, forHTTPHeaderField: "apns-push-type")
 
-        let (_, response) = try await session.data(for: request)
-        guard let _ = response.status else { fatalError() }
-        //TODO: Should handle errors here
+        let (data, response) = try await session.data(for: request)
+        guard let status = response.status else { fatalError() }
+        if !(200...299).contains(status) {
+            var apnsError: APNSError? = nil
+            do {
+                apnsError = try JSONDecoder().decode(APNSError.self, from: data)
+            } catch {
+                print("Unable to decode error: \(error)")
+            }
+            if let apnsError = apnsError { throw apnsError.apiError }
+        }
     }
 }
 
