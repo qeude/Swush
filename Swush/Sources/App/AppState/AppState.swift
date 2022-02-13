@@ -52,6 +52,10 @@ class AppState: ObservableObject {
     @Published var showCertificateTypePicker: Bool = false
     @Published var selectedPayloadType: APNS.PayloadType = .alert
 
+    var canSendApns: Bool {
+        return !deviceToken.isEmpty && !payload.isEmpty && !selectedTopic.isEmpty && !selectedCertificateType.isEmptyOrNil
+    }
+    
     private func setApns(_ apns: APNS) {
         selectedCertificateType = apns.certificateType
         selectedIdentityType = apns.isSandbox ? .sandbox : .production
@@ -80,7 +84,6 @@ class AppState: ObservableObject {
     private func didChange(identity: SecIdentity?) {
         guard let identity = identity else {
             topics = []
-            selectedTopic = ""
             return
         }
         let type = identity.type

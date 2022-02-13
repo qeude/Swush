@@ -41,7 +41,9 @@ struct ContentView: View {
                     }
                 } label: {
                     Image(systemName: "paperplane")
-                }.keyboardShortcut(.return, modifiers: [.command])
+                }
+                .keyboardShortcut(.return, modifiers: [.command])
+                .disabled(!appState.canSendApns)
             }
         }
     }
