@@ -7,6 +7,8 @@
 
 import SecurityInterface
 import SwiftUI
+import Foundation
+import UniformTypeIdentifiers
 
 struct SenderView: View {
     @Environment(\.appDatabase) private var appDatabase
@@ -70,8 +72,8 @@ struct SenderView: View {
                 .pickerStyle(.segmented)
                 .fixedSize()
             switch appState.selectedCertificateType {
-                case .p12: certificateAuthenticationForm
-                case .p8: keyAuthenticationForm
+            case .p12: certificateAuthenticationForm
+            case .p8: keyAuthenticationForm
             }
         }
     }
@@ -89,9 +91,16 @@ struct SenderView: View {
     
     private var keyAuthenticationForm: some View {
         Group {
-            Input(label: "Key filename") {
-                TextField(text: $apnsTokenFilename, prompt: Text("Paste the path to your .p8 file here ..."), label: {})
-                    .textFieldStyle(.roundedBorder)
+            Input(label: "Key file") {
+                HStack {
+                    Button {
+                        let filePath = showOpenPanel()
+                        self.apnsTokenFilename = filePath?.path ?? ""
+                    } label: {
+                        Text("Select .p8 file")
+                    }
+                    Text(self.apnsTokenFilename.split(separator: "/").last ?? "")
+                }
             }
             Input(label: "Team id") {
                 TextField(text: $teamId, prompt: Text("Paste your team id here ..."), label: {})
@@ -102,6 +111,16 @@ struct SenderView: View {
                     .textFieldStyle(.roundedBorder)
             }
         }
+    }
+    
+    private func showOpenPanel() -> URL? {
+        let openPanel = NSOpenPanel()
+        openPanel.allowedContentTypes = [UTType(filenameExtension: "p8")!]
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.canChooseFiles = true
+        let response = openPanel.runModal()
+        return response == .OK ? openPanel.url : nil
     }
     
     private var configForm: some View {
