@@ -24,6 +24,9 @@ struct APNS: Identifiable, Hashable {
     let keyId: String?
     let rawPayload: String
     let deviceToken: String
+    let collapseId: String
+    let notificationId: String
+    let expiration: String
     let topic: String
     let payloadType: PayloadType
     let priority: Priority
@@ -39,7 +42,10 @@ struct APNS: Identifiable, Hashable {
          topic: String,
          payloadType: PayloadType,
          priority: Priority,
-         isSandbox: Bool
+         isSandbox: Bool,
+         collapseId: String,
+         notificationId: String,
+         expiration: String
     ) {
         self.id = id
         self.name = name
@@ -64,6 +70,9 @@ struct APNS: Identifiable, Hashable {
         self.payloadType = payloadType
         self.priority = priority
         self.isSandbox = isSandbox
+        self.collapseId = collapseId
+        self.notificationId = notificationId
+        self.expiration = expiration
     }
     
     var certificateType: CertificateType {
@@ -109,7 +118,10 @@ struct APNS: Identifiable, Hashable {
         topic: "",
         payloadType: .alert,
         priority: .high,
-        isSandbox: true
+        isSandbox: true,
+        collapseId: "",
+        notificationId: "",
+        expiration: ""
     )
 }
 
@@ -130,6 +142,9 @@ extension APNS: Codable, FetchableRecord, MutablePersistableRecord {
         static let payloadType = Column(CodingKeys.payloadType)
         static let priority = Column(CodingKeys.priority)
         static let isSandbox = Column(CodingKeys.isSandbox)
+        static let collapseId = Column(CodingKeys.collapseId)
+        static let notificationId = Column(CodingKeys.notificationId)
+        static let expiration = Column(CodingKeys.expiration)
     }
 
     mutating func didInsert(with rowId: Int64, for _: String?) {

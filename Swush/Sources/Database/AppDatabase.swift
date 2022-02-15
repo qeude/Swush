@@ -44,6 +44,9 @@ struct AppDatabase {
                 t.column("payloadType", .text).notNull()
                 t.column("priority", .integer).notNull()
                 t.column("isSandbox", .boolean).notNull()
+                t.column("collapseId", .text)
+                t.column("notificationId", .text)
+                t.column("expiration", .text)
             }
         }
         return migrator

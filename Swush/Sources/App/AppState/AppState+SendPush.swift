@@ -33,7 +33,10 @@ extension AppState {
             topic: selectedTopic,
             payloadType: selectedPayloadType,
             priority: priority,
-            isSandbox: selectedIdentityType == .sandbox
+            isSandbox: selectedIdentityType == .sandbox,
+            collapseId: collapseId,
+            notificationId: notificationId,
+            expiration: expiration
         )
         do {
             try await DependencyProvider.apnsService.sendPush(for: apns)

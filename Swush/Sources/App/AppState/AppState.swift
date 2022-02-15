@@ -53,7 +53,10 @@ class AppState: ObservableObject {
     @Published var selectedPayloadType: APNS.PayloadType = .alert
     @Published var showErrorMessage: Bool = false
     @Published var errorMessage: String = ""
-
+    @Published var collapseId: String = ""
+    @Published var notificationId: String = ""
+    @Published var expiration: String = ""
+    
     var canSendApns: Bool {
         return !deviceToken.isEmpty && !payload.isEmpty && !selectedTopic.isEmpty && !selectedCertificateType.isEmptyOrNil
     }
@@ -80,7 +83,6 @@ class AppState: ObservableObject {
     
     private func didChange(filepath: String, teamId: String, keyId: String) {
         showCertificateTypePicker = true
-        selectedIdentityType = .production
     }
     
     private func didChange(identity: SecIdentity?) {

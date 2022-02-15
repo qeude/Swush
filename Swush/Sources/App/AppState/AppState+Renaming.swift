@@ -40,7 +40,10 @@ extension AppState {
                 topic: apns.topic,
                 payloadType: apns.payloadType,
                 priority: apns.priority,
-                isSandbox: apns.isSandbox
+                isSandbox: apns.isSandbox,
+                collapseId: apns.collapseId,
+                notificationId: apns.notificationId,
+                expiration: apns.expiration
             )
             try await AppDatabase.shared.saveAPNS(&apns)
             selectedApns = apns

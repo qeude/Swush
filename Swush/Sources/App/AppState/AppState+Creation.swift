@@ -32,7 +32,10 @@ extension AppState {
                 topic: selectedTopic,
                 payloadType: selectedPayloadType,
                 priority: priority,
-                isSandbox: selectedIdentityType == .sandbox
+                isSandbox: selectedIdentityType == .sandbox,
+                collapseId: collapseId,
+                notificationId: notificationId,
+                expiration: expiration
             )
             try await AppDatabase.shared.saveAPNS(&apns)
         } catch {

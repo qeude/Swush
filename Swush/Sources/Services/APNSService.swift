@@ -38,6 +38,15 @@ class APNSService: NSObject {
         request.addValue(apns.topic, forHTTPHeaderField: "apns-topic")
         request.addValue(String(apns.priority.rawValue), forHTTPHeaderField: "apns-priority")
         request.addValue(apns.payloadType.rawValue, forHTTPHeaderField: "apns-push-type")
+        if !apns.collapseId.isEmpty {
+            request.addValue(apns.collapseId, forHTTPHeaderField: "apns-collapse-id")
+        }
+        if !apns.notificationId.isEmpty {
+            request.addValue(apns.notificationId, forHTTPHeaderField: "apns-notification-id")
+        }
+        if !apns.expiration.isEmpty {
+            request.addValue(apns.expiration, forHTTPHeaderField: "apns-expiration")
+        }
 
         let (data, response) = try await session.data(for: request)
         guard let status = response.status else { fatalError() }

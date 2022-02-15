@@ -26,6 +26,7 @@ struct SenderView: View {
                 authenticationForm
                 if !appState.selectedCertificateType.isEmptyOrNil {
                     configForm
+                    optionalForm
                     payloadForm
                 }
             }
@@ -172,6 +173,24 @@ struct SenderView: View {
             topicForm
         }
         .animation(.default, value: appState.showCertificateTypePicker)
+    }
+    
+    private var optionalForm: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Optional").font(.title).bold()
+            Input(label: "Collapse id", help: "An identifier you use to coalesce multiple notifications into a single notification for the user. \nTypically, each notification request causes a new notification to be displayed on the user's device. \nWhen sending the same notification more than once, use the same value in this header to coalesce the requests. \nThe value of this key must not exceed 64 bytes.") {
+                TextField(text: $appState.collapseId, prompt: Text("Enter your collapse id here..."), label: {})
+                    .textFieldStyle(.roundedBorder)
+            }
+            Input(label: "Notification id", help: "A canonical UUID that is the unique ID for the notification. If an error occurs when sending the notification, APNs includes this value when reporting the error to your server. \n\nCanonical UUIDs are 32 lowercase hexadecimal digits, displayed in five groups separated by hyphens in the form 8-4-4-4-12. \n\nAn example looks like this: 123e4567-e89b-12d3- a456-4266554400a0. If vou omit this header, APNs creates a UUID for you and returns it in its response.") {
+                TextField(text: $appState.notificationId, prompt: Text("Enter your notification id here..."), label: {})
+                    .textFieldStyle(.roundedBorder)
+            }
+            Input(label: "Expiration", help: "The date at which the notification is no longer valid. This value is a UNIX epoch expressed in seconds (UTC). \n\nIf the value is nonzero, APNs stores the notification and tries to deliver it at least once, repeating the attempt as needed until the specified date. \n\nIf the value is 0, APNs attempts to deliver the notification only once and doesn't store it.") {
+                TextField(text: $appState.expiration, prompt: Text("Enter your expiration here..."), label: {})
+                    .textFieldStyle(.roundedBorder)
+            }
+        }
     }
     
     private var topicForm: some View {
