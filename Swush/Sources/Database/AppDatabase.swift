@@ -35,7 +35,7 @@ struct AppDatabase {
                 t.column("updateDate", .datetime).notNull()
                 t.column("rawCertificateType", .text).notNull()
                 t.column("identityString", .text)
-                t.column("apnsTokenfilename", .text)
+                t.column("filepath", .text)
                 t.column("teamId", .text)
                 t.column("keyId", .text)
                 t.column("rawPayload", .text).notNull()

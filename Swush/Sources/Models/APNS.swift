@@ -19,7 +19,7 @@ struct APNS: Identifiable, Hashable {
     let updateDate: Date
     let rawCertificateType: String
     let identityString: String?
-    let apnsTokenFilename: String?
+    let filepath: String?
     let teamId: String?
     let keyId: String?
     let rawPayload: String
@@ -49,12 +49,12 @@ struct APNS: Identifiable, Hashable {
         switch certificateType {
         case .p8(let tokenFilename, let teamId, let keyId):
             self.identityString = nil
-            self.apnsTokenFilename = tokenFilename
+            self.filepath = tokenFilename
             self.teamId = teamId
             self.keyId = keyId
-        case .p12(let certificate):
+        case .keychain(let certificate):
             self.identityString = certificate?.humanReadable
-            self.apnsTokenFilename = nil
+            self.filepath = nil
             self.teamId = nil
             self.keyId = nil
         }
@@ -68,8 +68,8 @@ struct APNS: Identifiable, Hashable {
     
     var certificateType: CertificateType {
         switch rawCertificateType {
-            case "p12": return .p12(certificate: identity)
-            case "p8": return .p8(tokenFilename: apnsTokenFilename ?? "", teamId: teamId ?? "", keyId: keyId ?? "")
+            case "keychain": return .keychain(certificate: identity)
+            case "p8": return .p8(filepath: filepath ?? "", teamId: teamId ?? "", keyId: keyId ?? "")
             default:
                 fatalError("Unknown certificate type")
         }
@@ -80,15 +80,15 @@ struct APNS: Identifiable, Hashable {
     }
     
     var topics: [String] {
-        if case .p12(.some(_)) = certificateType {
+        if case .keychain(.some(_)) = certificateType {
             return identity?.topics ?? []
         }
         return []
     }
     
     var jwt: String {
-        guard let teamId = teamId, let keyId = keyId, let tokenFilename = apnsTokenFilename else { fatalError() }
-        let jwt = JWT(teamId: teamId, topic: topic, keyId: keyId, tokenFilename: tokenFilename)
+        guard let teamId = teamId, let keyId = keyId, let filepath = filepath else { fatalError() }
+        let jwt = JWT(teamId: teamId, topic: topic, keyId: keyId, tokenFilename: filepath)
         return jwt.token
     }
 
@@ -102,7 +102,7 @@ struct APNS: Identifiable, Hashable {
         name: "Untitled",
         creationDate: Date(),
         updateDate: Date(),
-        certificateType: .p12(certificate: nil),
+        certificateType: .keychain(certificate: nil),
         rawPayload:
         "{\n\t\"aps\": {\n\t\t\"alert\": \"Push test!\",\n\t\t\"sound\": \"default\",\n\t}\n}",
         deviceToken: "",
@@ -121,7 +121,7 @@ extension APNS: Codable, FetchableRecord, MutablePersistableRecord {
         static let updateDate = Column(CodingKeys.updateDate)
         static let rawCertificateType = Column(CodingKeys.rawCertificateType)
         static let identityString = Column(CodingKeys.identityString)
-        static let apnsTokenFilename = Column(CodingKeys.apnsTokenFilename)
+        static let filepath = Column(CodingKeys.filepath)
         static let teamId = Column(CodingKeys.teamId)
         static let keyId = Column(CodingKeys.keyId)
         static let rawPayload = Column(CodingKeys.rawPayload)

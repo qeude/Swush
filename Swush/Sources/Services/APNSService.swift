@@ -12,12 +12,12 @@ class APNSService: NSObject {
     private var identity: SecIdentity?
 
     func sendPush(for apns: APNS) async throws {
-        if case .p12(let identity) = apns.certificateType {
+        if case .keychain(let identity) = apns.certificateType {
             self.identity = identity
         }
        
         switch apns.certificateType {
-        case .p12:
+        case .keychain:
             session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
         case .p8:
             session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)

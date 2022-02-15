@@ -21,7 +21,7 @@ extension AppState {
                 showErrorMessage = true
                 return
             }
-        case .p12: break
+        case .keychain: break
         }
         let apns = APNS(
             name: name,

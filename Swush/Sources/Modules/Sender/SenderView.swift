@@ -15,10 +15,10 @@ struct SenderView: View {
     @EnvironmentObject private var appState: AppState
     
     @State private var selectedIdentity: SecIdentity? = nil
-    @State private var apnsTokenFilename: String = ""
+    @State private var filepath: String = ""
     @State private var teamId: String = ""
     @State private var keyId: String = ""
-    @State private var selectedRawCertificateType: String = APNS.CertificateType.p12(certificate: nil).rawValue
+    @State private var selectedRawCertificateType: String = APNS.CertificateType.keychain(certificate: nil).rawValue
 
     var body: some View {
         ScrollView {
@@ -30,21 +30,21 @@ struct SenderView: View {
                 }
             }
             .onChange(of: selectedIdentity, perform: { newValue in
-                appState.selectedCertificateType = .p12(certificate: selectedIdentity)
+                appState.selectedCertificateType = .keychain(certificate: selectedIdentity)
             })
-            .onChange(of: apnsTokenFilename, perform: { newValue in
-                appState.selectedCertificateType = .p8(tokenFilename: apnsTokenFilename, teamId: teamId, keyId: keyId)
+            .onChange(of: filepath, perform: { newValue in
+                appState.selectedCertificateType = .p8(filepath: filepath, teamId: teamId, keyId: keyId)
             })
             .onChange(of: teamId, perform: { newValue in
-                appState.selectedCertificateType = .p8(tokenFilename: apnsTokenFilename, teamId: teamId, keyId: keyId)
+                appState.selectedCertificateType = .p8(filepath: filepath, teamId: teamId, keyId: keyId)
             })
             .onChange(of: keyId, perform: { newValue in
-                appState.selectedCertificateType = .p8(tokenFilename: apnsTokenFilename, teamId: teamId, keyId: keyId)
+                appState.selectedCertificateType = .p8(filepath: filepath, teamId: teamId, keyId: keyId)
             })
             .onChange(of: selectedRawCertificateType, perform: { newValue in
                 switch newValue {
-                case "p12": appState.selectedCertificateType = .p12(certificate: selectedIdentity)
-                case "p8":  appState.selectedCertificateType =  .p8(tokenFilename: apnsTokenFilename, teamId: teamId, keyId: keyId)
+                case "keychain": appState.selectedCertificateType = .keychain(certificate: selectedIdentity)
+                case "p8":  appState.selectedCertificateType =  .p8(filepath: filepath, teamId: teamId, keyId: keyId)
                 default: fatalError()
                 }
             })
@@ -75,7 +75,7 @@ struct SenderView: View {
                 .pickerStyle(.segmented)
                 .fixedSize()
             switch appState.selectedCertificateType {
-            case .p12: certificateAuthenticationForm
+            case .keychain: certificateAuthenticationForm
             case .p8: keyAuthenticationForm
             }
         }
@@ -98,11 +98,11 @@ struct SenderView: View {
                 HStack {
                     Button {
                         let filePath = showOpenPanel()
-                        self.apnsTokenFilename = filePath?.path ?? ""
+                        self.filepath = filePath?.path ?? ""
                     } label: {
                         Text("Select .p8 file")
                     }
-                    Text(self.apnsTokenFilename.split(separator: "/").last ?? "")
+                    Text(self.filepath.split(separator: "/").last ?? "")
                 }
             }
             Input(label: "Team id", help: "The Team ID of your Apple Developer Account. \n\nAvailable at [Membership](https://developer.apple.com/account/#!/membership/).") {
@@ -177,7 +177,7 @@ struct SenderView: View {
     private var topicForm: some View {
         Input(label: "Bundle id", help: "The topic for the notification. \nMost of the time, the topic is your app's bundle ID/app ID. It can have a suffix based on the type of push notification. \nIf you are using a certificate that supports Pushkit VolP or watchOS complication notifications, you must include this header with bundle ID of you app and if applicable, the proper suffix. \nIf you are using token-based authentication with APNs, you must include this header with the correct bundle ID and suffix combination") {
             switch appState.selectedCertificateType {
-            case .p12:
+            case .keychain:
                 Picker(selection: $appState.selectedTopic, content: {
                     ForEach(appState.topics, id: \.self) {
                         Text($0)
@@ -203,10 +203,10 @@ struct SenderView: View {
     private func setup() {
         selectedRawCertificateType = appState.selectedCertificateType.rawValue
         switch appState.selectedCertificateType {
-        case .p12(let certificate):
+        case .keychain(let certificate):
             selectedIdentity = certificate
-        case .p8(let tokenFilename, let teamId, let keyId):
-            self.apnsTokenFilename = tokenFilename
+        case .p8(let filepath, let teamId, let keyId):
+            self.filepath = filepath
             self.teamId = teamId
             self.keyId = keyId
         }

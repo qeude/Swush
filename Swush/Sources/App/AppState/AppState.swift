@@ -11,7 +11,7 @@ import SwiftUI
 @MainActor
 class AppState: ObservableObject {
     enum CertificateType {
-        case p12, p8
+        case keychain, p8
     }
     
     // MARK: Sidebar
@@ -35,7 +35,7 @@ class AppState: ObservableObject {
 
     // MARK: APNS form
 
-    @Published var selectedCertificateType: APNS.CertificateType = .p12(certificate: nil) {
+    @Published var selectedCertificateType: APNS.CertificateType = .keychain(certificate: nil) {
         didSet {
             didChangeCertificateType()
         }
@@ -73,12 +73,12 @@ class AppState: ObservableObject {
 
     private func didChangeCertificateType() {
         switch selectedCertificateType {
-            case .p8(let tokenFilename, let teamId, let keyId): didChange(tokenFilename: tokenFilename, teamId: teamId, keyId: keyId)
-            case .p12(let certificate): didChange(identity: certificate)
+            case .p8(let filepath, let teamId, let keyId): didChange(filepath: filepath, teamId: teamId, keyId: keyId)
+            case .keychain(let certificate): didChange(identity: certificate)
         }
     }
     
-    private func didChange(tokenFilename: String, teamId: String, keyId: String) {
+    private func didChange(filepath: String, teamId: String, keyId: String) {
         showCertificateTypePicker = true
         selectedIdentityType = .production
     }
