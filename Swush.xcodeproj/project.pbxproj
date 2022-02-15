@@ -44,6 +44,7 @@
 		0188035927B953C900823EE6 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0188035827B953C900823EE6 /* Input.swift */; };
 		0188035D27B9A5CD00823EE6 /* APNSService+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0188035C27B9A5CD00823EE6 /* APNSService+Error.swift */; };
 		0194C7D827A5B55300FB943F /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194C7D727A5B55300FB943F /* AppDatabase.swift */; };
+		01C1BCC627BC2F9F0080088A /* View+NSCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C1BCC527BC2F9F0080088A /* View+NSCursor.swift */; };
 		01C8269B27A87C450043E890 /* NSTextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */; };
 		01C8269E27A87FD70043E890 /* CreateApnsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C8269D27A87FD70043E890 /* CreateApnsView.swift */; };
 		01F8C2E627B04B8300B37588 /* View+ConditionalModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8C2E527B04B8300B37588 /* View+ConditionalModifier.swift */; };
@@ -88,6 +89,7 @@
 		0188035827B953C900823EE6 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		0188035C27B9A5CD00823EE6 /* APNSService+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNSService+Error.swift"; sourceTree = "<group>"; };
 		0194C7D727A5B55300FB943F /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
+		01C1BCC527BC2F9F0080088A /* View+NSCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+NSCursor.swift"; sourceTree = "<group>"; };
 		01C8269727A8798D0043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
 		01C8269A27A87C450043E890 /* NSTextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Extensions.swift"; sourceTree = "<group>"; };
 		01C8269D27A87FD70043E890 /* CreateApnsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateApnsView.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				0145B12F27A5A95200E0EC43 /* SecIdentity+Extensions.swift */,
 				012CEBFB27A7204400D76A5A /* Published+Extensions.swift */,
 				01F8C2E527B04B8300B37588 /* View+ConditionalModifier.swift */,
+				01C1BCC527BC2F9F0080088A /* View+NSCursor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				0145B12327A593A000E0EC43 /* DependencyProvider.swift in Sources */,
 				0194C7D827A5B55300FB943F /* AppDatabase.swift in Sources */,
 				014D0C8427A1BCEC00C43A74 /* SecIdentityService.swift in Sources */,
+				01C1BCC627BC2F9F0080088A /* View+NSCursor.swift in Sources */,
 				0145B12727A5973000E0EC43 /* String+Extensions.swift in Sources */,
 				0101ACF927B036A50010E212 /* SaveApnsView.swift in Sources */,
 				0145B12527A5950400E0EC43 /* SecIdentityType.swift in Sources */,

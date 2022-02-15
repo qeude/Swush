@@ -82,7 +82,7 @@ struct SenderView: View {
     }
     
     private var certificateAuthenticationForm: some View {
-        Input(label: "Certificate", help: "Certificates are retrieved from your Keychain. \n\nYou need to retrieve it from [Certificates, Identifiers & Profiles → Certificates](https://developer.apple.com/account/resources/certificates/list) and add it to your Keychain by double-clicking on it.") {
+        Input(label: "Certificate", help: "Certificates are retrieved from your Keychain. \n⚠️ If nothing appears here, it means that you have no APNs certificate stored in your keychain.\n\nYou need to retrieve it from [Certificates, Identifiers & Profiles → Certificates](https://developer.apple.com/account/resources/certificates/list) and add it to your Keychain by double-clicking on it.") {
             Picker(selection: $selectedIdentity, content: {
                 Text("Select a push certificate...").tag(nil as SecIdentity?)
                 ForEach(DependencyProvider.secIdentityService.identities ?? [], id: \.self) {

@@ -35,6 +35,7 @@ struct Input<Content: View>: View {
                             .foregroundColor(.primary)
                     }
                     .buttonStyle(.borderless)
+                    .cursor(.pointingHand)
                     .popover(isPresented: $showPopover) {
                         Text(help).padding()
                     }
