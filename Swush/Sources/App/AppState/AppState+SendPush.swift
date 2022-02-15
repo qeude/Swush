@@ -14,6 +14,15 @@ extension AppState {
             showErrorMessage = true
             return
         }
+        switch selectedCertificateType {
+        case .p8(let filename, _, _):
+            if !FileManager.default.fileExists(atPath: filename) {
+                errorMessage = "Please provide a valid .p8 token."
+                showErrorMessage = true
+                return
+            }
+        case .p12: break
+        }
         let apns = APNS(
             name: name,
             creationDate: selectedApns?.creationDate ?? Date(),
