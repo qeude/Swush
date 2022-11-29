@@ -108,11 +108,15 @@ struct SenderView: View {
             }
             Input(label: "Team id", help: "The Team ID of your Apple Developer Account. \n\nAvailable at [Membership](https://developer.apple.com/account/#!/membership/).") {
                 TextField(text: $teamId, prompt: Text("Paste your team id here ..."), label: {})
-                    .textFieldStyle(.roundedBorder)
+                    .textFieldStyle(.roundedBorder).onChange(of: teamId) { newValue in
+                        teamId = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
+                    }
             }
             Input(label: "Key id", help: "The key id associated to the selected `.p8` file. \n\nAvailable at [Certificates, Identifiers & Profiles → Keys](https://developer.apple.com/account/resources/authkeys/list).") {
                 TextField(text: $keyId, prompt: Text("Paste your key id here ..."), label: {})
-                    .textFieldStyle(.roundedBorder)
+                    .textFieldStyle(.roundedBorder).onChange(of: keyId) { newValue in
+                        keyId = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
+                    }
             }
         }
     }
@@ -132,7 +136,9 @@ struct SenderView: View {
             Text("Configuration").font(.title).bold()
             Input(label: "Device push token", help: "The device token for the user's device. \nYour app receives this device token when registering for remote notifications.") {
                 TextField(text: $appState.deviceToken, prompt: Text("Enter your device push token here..."), label: {})
-                    .textFieldStyle(.roundedBorder)
+                    .textFieldStyle(.roundedBorder).onChange(of: appState.deviceToken) { newValue in
+                        appState.deviceToken = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
+                    }
             }
             if appState.showCertificateTypePicker {
                 Input(label: "Environment", help: "APNs server to use to send your notification. \n- **sandbox**: for apps signed with iOS Development Certificate, mostly apps in debug mode. \n- **production**: for apps signed with iOS Distribution Certificate, mostly apps in release mode.") {
