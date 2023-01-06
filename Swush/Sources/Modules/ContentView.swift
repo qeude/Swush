@@ -34,7 +34,7 @@ struct ContentView: View {
                     Image(systemName: "plus")
                 }
             }
-            ToolbarItem(placement: .confirmationAction) {
+            ToolbarItem(placement: .primaryAction) {
                 Button {
                     Task {
                         await appState.sendPush()
