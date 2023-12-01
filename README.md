@@ -1,3 +1,5 @@
+**THIS REPOSITORY IS ARCHIVED SINCE THERE IS [AN OFFICIAL PUSH CONSOLE](https://developer.apple.com/documentation/usernotifications/testing_notifications_using_the_push_notification_console) THAT EXISTS NOW.**
+
 <div align=center><img src="icon.png" align=center height="128"></div>
 <h1 align=center>Swush</h1>
 <div align=center><img src="screenshot.png" width=600 ></div>
